@@ -1,6 +1,6 @@
 from fileinput import filename
 
-from flask import render_template,redirect,url_for,flash,request,abort,session
+from flask import render_template,redirect,url_for,flash,request,abort,session,Response
 from comunidadeimpressionadora import app,database,bcrypt,db_uri
 from comunidadeimpressionadora.forms import (FormLogin,FormVenderLote,
                                              FormFiltroLote,FormCriarConta,
@@ -731,26 +731,12 @@ def exportar_lote_para_txt(lote_id):
         ]
         dados_cabecalho='; '.join(lista_cabecalho)+ '\n'
         dados_lote = '; '.join(lista_dados) + '\n'
-        dados_lote=dados_cabecalho+dados_lote
-        try:
-            # Obter o nome do usuário atual
-            nome_usuario = os.getlogin()
 
-            # Construir o caminho para a pasta de Downloads
-            caminho_downloads = f'C:\\Users\\{nome_usuario}\\Downloads\\lote {lote.lote} exportado.txt'
-            with open(caminho_downloads, 'w') as arquivo:
-                arquivo.write(dados_lote)
-
-            flash(f'Dados lote {lote.lote} exportados com sucesso!', 'alert-success')
-        except PermissionError:
-            #print("Erro: O arquivo está em uso. Feche o arquivo e tente novamente.")
-            flash('Erro: O arquivo está em uso. Feche o arquivo e tente novamente.', 'alert-danger')
-            return redirect(url_for('home'))
-
-        return redirect(url_for('home'))
-    else:
-
-        flash('Lote não encontrado.', 'alert-danger')
+        dados_final=dados_cabecalho+dados_lote
+        # Criar a resposta para download
+        response = Response(dados_final, mimetype='text/plain')
+        response.headers["Content-Disposition"] = f"attachment; filename=lote_{lote.lote}_exportado.txt"
+        return response
 
 @app.route('/imprimir_dados/<int:lote_id>', methods=['GET'])
 def imprimir_dados(lote_id):
