@@ -1,0 +1,511 @@
+﻿lote;status;avista;area;tabela_preco;id_tabela
+A  01;Disponivel;165000.00;340;A  01;93
+A  02;Disponivel;165000.00;250;A  02;20
+A  03;Disponivel;165000.00;250;A  03;21
+A  04;Disponivel;165000.00;250;A  04;22
+A  05;Disponivel;165000.00;565.65;A  05;117
+A  06;Disponivel;165000.00;333.7;A  06;103
+A  07;Disponivel;165000.00;250;T6;6
+A  08;Disponivel;165000.00;350.3;A  08;100
+A  09;Disponivel;165000.00;332.06;A  09;94
+A  10;Disponivel;165000.00;313.83;A  10;91
+A  11;Disponivel;165000.00;295.59;A  11;82
+A  12;Disponivel;165000.00;277.35;A  12;68
+A  13;Disponivel;165000.00;259.12;A  13;48
+A  14;Disponivel;165000.00;250;T4;4
+A  15;Disponivel;165000.00;250;T4;4
+A  16;Disponivel;165000.00;250;T4;4
+A  17;Disponivel;165000.00;250;T4;4
+A  18;Disponivel;165000.00;382.1;A  18;111
+A  19;Disponivel;165000.00;512.17;A  19;119
+A  20;Disponivel;165000.00;400.31;A  20;118
+A  21;Disponivel;165000.00;540.68;A  21;120
+A  22;Disponivel;165000.00;790.6;A  22;122
+B  01;Disponivel;165000.00;408.95;B  01;114
+B  02;Disponivel;165000.00;250;T6;6
+B  03;Disponivel;165000.00;250;T6;6
+B  04;Disponivel;165000.00;250;T6;6
+B  05;Disponivel;165000.00;250;T6;6
+B  06;Disponivel;165000.00;250;T6;6
+B  07;Disponivel;165000.00;250;T6;6
+B  08;Disponivel;165000.00;250;T6;6
+B  09;Disponivel;165000.00;250;T6;6
+B  10;Disponivel;165000.00;250;T6;6
+B  11;Disponivel;165000.00;250;T6;6
+B  12;Disponivel;165000.00;250;T6;6
+B  13;Disponivel;165000.00;250;T6;6
+B  14;Disponivel;165000.00;250;T6;6
+B  15;Disponivel;165000.00;397.41;B  15;113
+B  16;Disponivel;165000.00;354.34;B  16;109
+B  17;Disponivel;165000.00;250;T4;4
+B  18;Disponivel;165000.00;250;T4;4
+B  19;Disponivel;165000.00;250;T4;4
+B  20;Disponivel;165000.00;250;T4;4
+B  21;Disponivel;165000.00;250;T4;4
+B  22;Disponivel;165000.00;250;T4;4
+B  23;Disponivel;165000.00;250;T4;4
+B  24;Disponivel;165000.00;250;T4;4
+B  25;Disponivel;165000.00;250;T4;4
+B  26;Disponivel;165000.00;250;T4;4
+B  27;Disponivel;165000.00;250;T4;4
+B  28;Disponivel;165000.00;250;T4;4
+B  29;Disponivel;165000.00;250;T4;4
+B  30;Disponivel;165000.00;457;B  30;115
+C  01;Disponivel;165000.00;508.6;C  01;97
+C  02;Disponivel;165000.00;282.24;C  02;19
+C  03;Disponivel;165000.00;250;T2;2
+C  04;Disponivel;165000.00;250;T2;2
+C  05;Disponivel;165000.00;250;T2;2
+C  06;Disponivel;165000.00;250;T2;2
+C  07;Disponivel;165000.00;250;T2;2
+C  08;Disponivel;165000.00;321.73;C  08;47
+C  09;Disponivel;165000.00;306.25;C  09;33
+C  10;Disponivel;165000.00;250;T1;1
+C  11;Disponivel;165000.00;250;T1;1
+C  12;Disponivel;165000.00;250;T1;1
+C  13;Disponivel;165000.00;250;T1;1
+C  14;Disponivel;165000.00;250;T1;1
+C  15;Disponivel;165000.00;250;T1;1
+C  16;Disponivel;165000.00;543.87;C  16;105
+D  01;Disponivel;165000.00;306.97;D  01;35
+D  02;Disponivel;165000.00;250;T2;2
+D  03;Disponivel;165000.00;250;T2;2
+D  04;Disponivel;165000.00;250;T2;2
+D  05;Disponivel;165000.00;250;T2;2
+D  06;Disponivel;165000.00;250;T2;2
+D  07;Disponivel;165000.00;250;T2;2
+D  08;Disponivel;165000.00;250;T2;2
+D  09;Disponivel;165000.00;250;T2;2
+D  10;Disponivel;165000.00;250;T2;2
+D  11;Disponivel;165000.00;250;T2;2
+D  12;Disponivel;165000.00;250;T2;2
+D  13;Disponivel;165000.00;250;T2;2
+D  14;Disponivel;165000.00;250;T2;2
+D  15;Disponivel;165000.00;250;T2;2
+D  16;Disponivel;165000.00;250;T2;2
+D  17;Disponivel;165000.00;361.28;D  17;77
+D  18;Disponivel;165000.00;419.61;D  18;96
+D  19;Disponivel;165000.00;250;T1;1
+D  20;Disponivel;165000.00;250;T1;1
+D  21;Disponivel;165000.00;250;T1;1
+D  22;Disponivel;165000.00;250;T1;1
+D  23;Disponivel;165000.00;250;T1;1
+D  24;Disponivel;165000.00;250;T1;1
+D  25;Disponivel;165000.00;250;T1;1
+D  26;Disponivel;165000.00;250;T1;1
+D  27;Disponivel;165000.00;250;T1;1
+D  28;Disponivel;165000.00;250;T1;1
+D  29;Disponivel;165000.00;250;T1;1
+D  30;Disponivel;165000.00;250;T1;1
+D  31;Disponivel;165000.00;250;T1;1
+D  32;Disponivel;165000.00;250;T1;1
+D  33;Disponivel;165000.00;304.2;D  33;30
+E  01;Disponivel;165000.00;371.77;E  01;83
+E  02;Disponivel;165000.00;250;T2;2
+E  03;Disponivel;165000.00;250;T2;2
+E  04;Disponivel;165000.00;250;T2;2
+E  05;Disponivel;165000.00;250;T2;2
+E  06;Disponivel;165000.00;250;T2;2
+E  07;Disponivel;165000.00;250;T2;2
+E  08;Disponivel;165000.00;250;T2;2
+E  09;Disponivel;165000.00;250;T2;2
+E  10;Disponivel;165000.00;250;T3;3
+E  11;Disponivel;165000.00;308;E  11;36
+E  12;Disponivel;165000.00;311.04;E  12;40
+E  13;Disponivel;165000.00;250;T1;1
+E  14;Disponivel;165000.00;250;T1;1
+E  15;Disponivel;165000.00;250;T1;1
+E  16;Disponivel;165000.00;250;T1;1
+E  17;Disponivel;165000.00;250;T1;1
+E  18;Disponivel;165000.00;250;T1;1
+E  19;Disponivel;165000.00;250;T1;1
+E  20;Disponivel;165000.00;471.35;E  20;108
+F  01;Disponivel;165000.00;473.58;F  01;110
+F  02;Disponivel;165000.00;250;T2;2
+F  03;Disponivel;165000.00;250;T2;2
+F  04;Disponivel;165000.00;250;T2;2
+F  05;Disponivel;165000.00;250;T2;2
+F  06;Disponivel;165000.00;250;T2;2
+F  07;Disponivel;165000.00;250;T2;2
+F  08;Disponivel;165000.00;250;T2;2
+F  09;Disponivel;165000.00;250;T2;2
+F  10;Disponivel;165000.00;308;F  10;37
+F  11;Disponivel;165000.00;311.04;F  11;41
+F  12;Disponivel;165000.00;250;T1;1
+F  13;Disponivel;165000.00;250;T1;1
+F  14;Disponivel;165000.00;250;T1;1
+F  15;Disponivel;165000.00;250;T1;1
+F  16;Disponivel;165000.00;250;T1;1
+F  17;Disponivel;165000.00;250;T1;1
+F  18;Disponivel;165000.00;250;T1;1
+F  19;Disponivel;165000.00;250;T1;1
+F  20;Disponivel;165000.00;250;T1;1
+F  21;Disponivel;165000.00;502.74;F  21;106
+G  01;Disponivel;165000.00;344.56;G  01;66
+G  02;Disponivel;165000.00;250;T2;2
+G  03;Disponivel;165000.00;250;T2;2
+G  04;Disponivel;165000.00;250;T2;2
+G  05;Disponivel;165000.00;341;G  06;61
+G  06;Disponivel;165000.00;341.13;G  06;61
+G  07;Disponivel;165000.00;250;T1;1
+G  08;Disponivel;165000.00;250;T1;1
+G  09;Disponivel;165000.00;250;T1;1
+G  10;Disponivel;165000.00;341.79;G  10;63
+H  01;Disponivel;165000.00;330.08;H  01;28
+H  02;Disponivel;165000.00;250;T2;2
+H  03;Disponivel;165000.00;250;T2;2
+H  04;Disponivel;165000.00;250;T2;2
+H  05;Disponivel;165000.00;250;T2;2
+H  06;Disponivel;165000.00;250;T2;2
+H  07;Disponivel;165000.00;250;T2;2
+H  08;Disponivel;165000.00;250;T2;2
+H  09;Disponivel;165000.00;250;T2;2
+H  10;Disponivel;165000.00;250;T2;2
+H  11;Disponivel;165000.00;356.45;H  11;74
+H  12;Disponivel;165000.00;329.52;H  12;55
+H  13;Disponivel;165000.00;272.31;H  13;16
+H  14;Disponivel;165000.00;251.58;H  14;9
+H  15;Disponivel;165000.00;250;T2;2
+H  16;Disponivel;165000.00;250;T2;2
+H  17;Disponivel;165000.00;367.37;H  17;80
+I  01;Disponivel;165000.00;349.13;I  01;71
+I  03;Disponivel;165000.00;250;T2;2
+I  04;Disponivel;165000.00;250;T2;2
+I  05;Disponivel;165000.00;250;T2;2
+I  06;Disponivel;165000.00;250;T2;2
+I  07;Disponivel;165000.00;250;T2;2
+I  08;Disponivel;165000.00;250;T2;2
+I  09;Disponivel;165000.00;250;T2;2
+I  10;Disponivel;165000.00;250;T2;2
+I  11;Disponivel;165000.00;250;T2;2
+I  12;Disponivel;165000.00;250;T3;3
+I  13;Disponivel;165000.00;307.62;I  13;50
+I  14;Disponivel;165000.00;307.62;I  14;51
+I  15;Disponivel;165000.00;250;T2;2
+I  16;Disponivel;165000.00;250;T2;2
+I  17;Disponivel;165000.00;250;T2;2
+I  18;Disponivel;165000.00;250;T2;2
+I  19;Disponivel;165000.00;250;T2;2
+I  20;Disponivel;165000.00;250;T2;2
+I  21;Disponivel;165000.00;250;T2;2
+I  22;Disponivel;165000.00;250.21;I  22;7
+I  23;Disponivel;165000.00;470.84;I  23;107
+I  24;Disponivel;165000.00;1151.7;I  24;121
+I  25;Disponivel;165000.00;335.93;I  25;59
+I  26;Disponivel;165000.00;250;T3;3
+I  27;Disponivel;165000.00;250;I  27;12
+I  28;Disponivel;165000.00;346;I  28;79
+I  29;Disponivel;165000.00;265.52;I  29;17
+I  30;Disponivel;165000.00;309.01;I  30;53
+I  31;Disponivel;165000.00;250;T3;3
+I  32;Disponivel;165000.00;250;T3;3
+I  33;Disponivel;165000.00;250;T3;3
+I  34;Disponivel;165000.00;250;T3;3
+J  01;Disponivel;165000.00;626.79;J  01;112
+J  02;Disponivel;165000.00;250;T2;2
+J  03;Disponivel;165000.00;250;T2;2
+J  04;Disponivel;165000.00;250;T2;2
+J  05;Disponivel;165000.00;250;T2;2
+J  06;Disponivel;165000.00;324;J  06;49
+K  01;Disponivel;165000.00;334.39;K  01;57
+K  02;Disponivel;165000.00;250;T3;3
+K  03;Disponivel;165000.00;250;T3;3
+K  04;Disponivel;165000.00;250;T3;3
+K  05;Disponivel;165000.00;250;T3;3
+K  06;Disponivel;165000.00;250;T3;3
+K  07;Disponivel;165000.00;250;T3;3
+K  08;Disponivel;165000.00;250;T3;3
+K  09;Disponivel;165000.00;250;T3;3
+K  10;Disponivel;165000.00;250;T3;3
+K  11;Disponivel;165000.00;250;T3;3
+K  12;Disponivel;165000.00;250;T3;3
+K  13;Disponivel;165000.00;307.62;K  13;45
+K  14;Disponivel;165000.00;307.62;K  14;46
+K  15;Disponivel;165000.00;250;T3;3
+K  16;Disponivel;165000.00;250;T3;3
+K  17;Disponivel;165000.00;250;T3;3
+K  18;Disponivel;165000.00;250;T3;3
+K  19;Disponivel;165000.00;250;T3;3
+K  20;Disponivel;165000.00;250;T3;3
+K  21;Disponivel;165000.00;250;T3;3
+K  22;Disponivel;165000.00;250;T3;3
+K  23;Disponivel;165000.00;250;T3;3
+K  24;Disponivel;165000.00;250;T3;3
+K  25;Disponivel;165000.00;250;T3;3
+K  26;Disponivel;165000.00;250;T3;3
+K  27;Disponivel;165000.00;353.6;K  27;78
+L  01;Disponivel;165000.00;873.03;L  01;116
+L  02;Disponivel;165000.00;261.83;L  02;14
+L  03;Disponivel;165000.00;275.67;L  03;23
+L  04;Disponivel;165000.00;288.28;L  04;32
+L  05;Disponivel;165000.00;589.78;L  05;101
+M  02;Disponivel;165000.00;250;T1;1
+M  03;Disponivel;165000.00;250;T1;1
+N  01;Disponivel;165000.00;311.63;N  01;42
+N  02;Disponivel;165000.00;250;T1;1
+N  03;Disponivel;165000.00;250;T1;1
+N  04;Disponivel;165000.00;250;T1;1
+O  01;Disponivel;165000.00;470.09;O  01;90
+O  02;Disponivel;165000.00;295.7;O  02;25
+O  03;Disponivel;165000.00;278.8;O  03;15
+O  04;Disponivel;165000.00;255.51;O  04;10
+O  05;Disponivel;165000.00;250.21;O  05;8
+O  06;Disponivel;165000.00;250;T2;2
+O  07;Disponivel;165000.00;250;T2;2
+O  08;Disponivel;165000.00;250;T2;2
+O  09;Disponivel;165000.00;250;T2;2
+O  10;Disponivel;165000.00;250;T2;2
+O  11;Disponivel;165000.00;250;T2;2
+O  12;Disponivel;165000.00;250;T2;2
+O  13;Disponivel;165000.00;250;T2;2
+O  14;Disponivel;165000.00;250;T3;3
+O  15;Disponivel;165000.00;250;T3;3
+O  16;Disponivel;165000.00;250;T3;3
+O  17;Disponivel;165000.00;250;T3;3
+O  18;Disponivel;165000.00;250;T3;3
+O  19;Disponivel;165000.00;250;T3;3
+O  20;Disponivel;165000.00;250;T3;3
+O  21;Disponivel;165000.00;250;T3;3
+O  22;Disponivel;165000.00;250;T3;3
+O  23;Disponivel;165000.00;250;T3;3
+O  24;Disponivel;165000.00;250;T3;3
+O  25;Disponivel;165000.00;250;T3;3
+O  26;Disponivel;165000.00;250;T3;3
+O  27;Disponivel;165000.00;250;T3;3
+O  28;Disponivel;165000.00;250;T3;3
+P  01;Disponivel;165000.00;373.24;P  01;84
+P  02;Disponivel;165000.00;250;T2;2
+P  03;Disponivel;165000.00;250;T2;2
+P  04;Disponivel;165000.00;250;T2;2
+P  05;Disponivel;165000.00;250;T2;2
+P  06;Disponivel;165000.00;250;T2;2
+P  07;Disponivel;165000.00;250;T2;2
+P  08;Disponivel;165000.00;250;T3;3
+P  09;Disponivel;165000.00;250;T3;3
+P  10;Disponivel;165000.00;250;T3;3
+P  11;Disponivel;165000.00;250;T3;3
+P  12;Disponivel;165000.00;250;T3;3
+P  13;Disponivel;165000.00;250;T3;3
+P  14;Disponivel;165000.00;250;T3;3
+P  15;Disponivel;165000.00;250;T3;3
+P  16;Disponivel;165000.00;250;T3;3
+P  17;Disponivel;165000.00;250;T3;3
+P  18;Disponivel;165000.00;250;T3;3
+P  19;Disponivel;165000.00;250;T3;3
+P  20;Disponivel;165000.00;250;T3;3
+P  21;Disponivel;165000.00;250;T3;3
+P  22;Disponivel;165000.00;250;T3;3
+P  23;Disponivel;165000.00;250;T3;3
+P  24;Disponivel;165000.00;360.59;P  24;76
+P  25;Disponivel;165000.00;428.6;P  25;92
+P  26;Disponivel;165000.00;250;T3;3
+P  27;Disponivel;165000.00;250;T3;3
+P  28;Disponivel;165000.00;250;T3;3
+P  29;Disponivel;165000.00;250;T3;3
+P  30;Disponivel;165000.00;250;T3;3
+P  31;Disponivel;165000.00;250;T3;3
+P  32;Disponivel;165000.00;250;T3;3
+P  33;Disponivel;165000.00;250;T3;3
+P  34;Disponivel;165000.00;250;T3;3
+P  35;Disponivel;165000.00;250;T3;3
+P  36;Disponivel;165000.00;250;T3;3
+P  37;Disponivel;165000.00;250;T3;3
+P  38;Disponivel;165000.00;250;T3;3
+P  39;Disponivel;165000.00;250;T3;3
+P  40;Disponivel;165000.00;250;T3;3
+P  41;Disponivel;165000.00;250;T3;3
+P  42;Disponivel;165000.00;250;T3;3
+P  43;Disponivel;165000.00;250;T3;3
+P  44;Disponivel;165000.00;250;T3;3
+P  45;Disponivel;165000.00;250;T3;3
+P  46;Disponivel;165000.00;250;T3;3
+P  47;Disponivel;165000.00;250;T3;3
+P  48;Disponivel;165000.00;250;T3;3
+P  49;Disponivel;165000.00;346.45;P  49;67
+Q  01;Disponivel;165000.00;344.37;Q  01;65
+Q  02;Disponivel;165000.00;250;T2;2
+Q  03;Disponivel;165000.00;250;T2;2
+Q  04;Disponivel;165000.00;250;T2;2
+Q  05;Disponivel;165000.00;250;T2;2
+Q  06;Disponivel;165000.00;250;T3;3
+Q  07;Disponivel;165000.00;250;T3;3
+Q  08;Disponivel;165000.00;250;T3;3
+Q  09;Disponivel;165000.00;250;T3;3
+Q  10;Disponivel;165000.00;250;T3;3
+Q  11;Disponivel;165000.00;250;T3;3
+Q  12;Disponivel;165000.00;250;T3;3
+Q  13;Disponivel;165000.00;250;T3;3
+Q  14;Disponivel;165000.00;250;T3;3
+Q  15;Disponivel;165000.00;250;T3;3
+Q  16;Disponivel;165000.00;250;T3;3
+Q  17;Disponivel;165000.00;250;T3;3
+Q  18;Disponivel;165000.00;250;T3;3
+Q  19;Disponivel;165000.00;250;T3;3
+Q  20;Disponivel;165000.00;593.44;Q  20;104
+Q  21;Disponivel;165000.00;506.4;Q  21;86
+Q  22;Disponivel;165000.00;250;T3;3
+Q  23;Disponivel;165000.00;250;T3;3
+Q  24;Disponivel;165000.00;250;T3;3
+Q  25;Disponivel;165000.00;250;T3;3
+Q  26;Disponivel;165000.00;250;T3;3
+Q  27;Disponivel;165000.00;250;T3;3
+Q  28;Disponivel;165000.00;250;T3;3
+Q  29;Disponivel;165000.00;250;T3;3
+Q  30;Disponivel;165000.00;250;T3;3
+Q  31;Disponivel;165000.00;250;T3;3
+Q  32;Disponivel;165000.00;250;T3;3
+Q  33;Disponivel;165000.00;250;T3;3
+Q  34;Disponivel;165000.00;250;T3;3
+Q  35;Disponivel;165000.00;250;T3;3
+Q  36;Disponivel;165000.00;250;T3;3
+Q  37;Disponivel;165000.00;250;T3;3
+Q  38;Disponivel;165000.00;250;T3;3
+Q  39;Disponivel;165000.00;250;T3;3
+Q  40;Disponivel;165000.00;250;T3;3
+Q  41;Disponivel;165000.00;401.16;Q  41;81
+R  01;Disponivel;165000.00;341.19;R  01;62
+R  02;Disponivel;165000.00;250;T2;2
+R  03;Disponivel;165000.00;250;T2;2
+R  04;Disponivel;165000.00;250;T2;2
+R  05;Disponivel;165000.00;250;T2;2
+R  06;Disponivel;165000.00;250;T3;3
+R  07;Disponivel;165000.00;250;T3;3
+R  08;Disponivel;165000.00;250;T3;3
+R  09;Disponivel;165000.00;250;T3;3
+R  10;Disponivel;165000.00;250;T3;3
+R  11;Disponivel;165000.00;250;T3;3
+R  12;Disponivel;165000.00;250;T3;3
+R  13;Disponivel;165000.00;250;T3;3
+R  14;Disponivel;165000.00;250;T3;3
+R  15;Disponivel;165000.00;250;T3;3
+R  16;Disponivel;165000.00;250;T3;3
+R  17;Disponivel;165000.00;250;T3;3
+R  18;Disponivel;165000.00;250;T3;3
+R  19;Disponivel;165000.00;349.11;R  19;70
+R  20;Disponivel;165000.00;409.66;R  20;85
+R  21;Disponivel;165000.00;250;T3;3
+R  22;Disponivel;165000.00;250;T3;3
+R  23;Disponivel;165000.00;250;T3;3
+R  24;Disponivel;165000.00;250;T3;3
+R  25;Disponivel;165000.00;250;T3;3
+R  26;Disponivel;165000.00;250;T3;3
+R  27;Disponivel;165000.00;250;T3;3
+R  28;Disponivel;165000.00;250;T3;3
+R  29;Disponivel;165000.00;250;T3;3
+R  30;Disponivel;165000.00;250;T3;3
+R  31;Disponivel;165000.00;250;T3;3
+R  32;Disponivel;165000.00;250;T3;3
+R  33;Disponivel;165000.00;250;T3;3
+R  34;Disponivel;165000.00;250;T2;2
+R  35;Disponivel;165000.00;250;T2;2
+R  36;Disponivel;165000.00;250;T2;2
+R  37;Disponivel;165000.00;250;T2;2
+R  38;Disponivel;165000.00;484.78;R  38;102
+S  01;Disponivel;165000.00;456.51;S  01;95
+S  02;Disponivel;165000.00;250;T1;1
+S  03;Disponivel;165000.00;250;T2;2
+S  04;Disponivel;165000.00;250;T2;2
+S  05;Disponivel;165000.00;250;T3;3
+S  06;Disponivel;165000.00;250;T3;3
+S  07;Disponivel;165000.00;250;T3;3
+S  08;Disponivel;165000.00;250;T3;3
+S  09;Disponivel;165000.00;250;T3;3
+S  10;Disponivel;165000.00;250;T3;3
+S  11;Disponivel;165000.00;250;T3;3
+S  12;Disponivel;165000.00;250;T3;3
+S  13;Disponivel;165000.00;250;T3;3
+S  14;Disponivel;165000.00;250;T3;3
+S  15;Disponivel;165000.00;579.41;S  15;98
+S  16;Disponivel;165000.00;518.85;S  16;88
+S  17;Disponivel;165000.00;250;T3;3
+S  18;Disponivel;165000.00;250;T3;3
+S  19;Disponivel;165000.00;250;T3;3
+S  20;Disponivel;165000.00;250;T3;3
+S  21;Disponivel;165000.00;250;T3;3
+S  22;Disponivel;165000.00;250;T3;3
+S  23;Disponivel;165000.00;250;T3;3
+S  24;Disponivel;165000.00;250;T3;3
+S  25;Disponivel;165000.00;250;T3;3
+S  26;Disponivel;165000.00;250;T3;3
+S  27;Disponivel;165000.00;250;T3;3
+S  28;Disponivel;165000.00;250;T2;2
+S  29;Disponivel;165000.00;250;T2;2
+S  30;Disponivel;165000.00;250;T1;1
+S  31;Disponivel;165000.00;463.65;S  31;69
+T  01;Disponivel;165000.00;434.44;T  01;52
+T  02;Disponivel;165000.00;250;T1;1
+T  03;Disponivel;165000.00;250;T3;3
+T  04;Disponivel;165000.00;250;T3;3
+T  05;Disponivel;165000.00;250;T1;1
+T  06;Disponivel;165000.00;250;T3;3
+T  07;Disponivel;165000.00;250;T3;3
+T  08;Disponivel;165000.00;250;T3;3
+T  09;Disponivel;165000.00;250;T3;3
+T  10;Disponivel;165000.00;250;T3;3
+T  11;Disponivel;165000.00;250;T3;3
+T  12;Disponivel;165000.00;250;T3;3
+T  13;Disponivel;165000.00;250;T3;3
+T  14;Disponivel;165000.00;398.87;T  14;56
+T  15;Disponivel;165000.00;446.18;T  15;58
+T  16;Disponivel;165000.00;250;T3;3
+T  17;Disponivel;165000.00;250;T3;3
+T  18;Disponivel;165000.00;250;T3;3
+T  19;Disponivel;165000.00;250;T3;3
+T  20;Disponivel;165000.00;250;T3;3
+T  21;Disponivel;165000.00;250;T3;3
+T  22;Disponivel;165000.00;250;T3;3
+T  23;Disponivel;165000.00;250;T3;3
+T  24;Disponivel;165000.00;250;T3;3
+T  25;Disponivel;165000.00;250;T3;3
+T  26;Disponivel;165000.00;250;T2;2
+T  27;Disponivel;165000.00;250;T2;2
+T  28;Disponivel;165000.00;250;T2;2
+T  29;Disponivel;165000.00;328.03;T  29;54
+U  01;Disponivel;165000.00;349.75;U  01;72
+U  02;Disponivel;165000.00;250;T2;2
+U  03;Disponivel;165000.00;250;T1;1
+U  04;Disponivel;165000.00;250;T2;2
+U  05;Disponivel;165000.00;250;T3;3
+U  06;Disponivel;165000.00;250;T3;3
+U  07;Disponivel;165000.00;250;T3;3
+U  08;Disponivel;165000.00;250;T3;3
+U  09;Disponivel;165000.00;250;T3;3
+U  10;Disponivel;165000.00;250;T3;3
+U  11;Disponivel;165000.00;579.41;U  11;99
+U  12;Disponivel;165000.00;518.85;U  12;89
+U  13;Disponivel;165000.00;250;T3;3
+U  14;Disponivel;165000.00;250;T3;3
+U  15;Disponivel;165000.00;250;T3;3
+U  16;Disponivel;165000.00;250;T3;3
+U  17;Disponivel;165000.00;250;T3;3
+U  18;Disponivel;165000.00;250;T3;3
+U  19;Disponivel;165000.00;250;T1;1
+U  20;Disponivel;165000.00;250;T1;1
+U  21;Disponivel;165000.00;250;T1;1
+U  22;Disponivel;165000.00;250;T2;2
+U  23;Disponivel;165000.00;357;U  23;75
+V  01;Disponivel;165000.00;343.43;V  01;64
+V  02;Disponivel;165000.00;271.1;V  02;13
+V  03;Disponivel;165000.00;294.73;V  03;24
+V  04;Disponivel;165000.00;310.08;V  04;38
+V  05;Disponivel;165000.00;313.58;V  05;43
+V  06;Disponivel;165000.00;310.19;V  06;39
+V  07;Disponivel;165000.00;306.8;V  07;34
+V  08;Disponivel;165000.00;303.41;V  08;29
+V  09;Disponivel;165000.00;300.02;V  09;27
+V  10;Disponivel;165000.00;296.63;V  10;26
+V  11;Disponivel;165000.00;421.44;V  11;73
+W  01;Disponivel;165000.00;260.83;W  01;11
+W  02;Disponivel;165000.00;274.24;W  02;18
+W  03;Disponivel;165000.00;287.48;W  03;31
+W  04;Disponivel;165000.00;297.08;W  04;44
+W  05;Disponivel;165000.00;359.95;W  05;87
+W  06;Disponivel;165000.00;300;T5;5
+W  07;Disponivel;165000.00;300;T5;5
+W  08;Disponivel;165000.00;300;T5;5
+W  09;Disponivel;165000.00;300;T5;5
+W  10;Disponivel;165000.00;300;T5;5
+W  11;Disponivel;165000.00;300;T5;5
+X  01;Disponivel;165000.00;300;T5;5
+X  02;Disponivel;165000.00;300;T5;5
+X  03;Disponivel;165000.00;300;T5;5
