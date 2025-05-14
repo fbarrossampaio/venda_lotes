@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimir Lote</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<!--    <div class="container mt-5">-->
+    <div class="container mt-5 text-center">
+        <h1>{{ lote.autor_lote.empresa }}</h1>
+        <h4>{{ lote.autor_lote.cnpj }}</h4>
+        <h4>Corretor: {{ lote.autor_lote.username }}</h4>
+        <h4>E-mail: {{ lote.autor_lote.email }}</h4>
+        <br>
+        <h2>PROPOSTA DE COMPRA</h2>
+        <H2>{{ lote.lote }}</H2>
+        <p>Venho atravéz desta solicitar a reserva do lote acima, por mim visitado.</p>
+        <h2>Preço e Condições</h2>
+
+    </div>
+     <div class="container mt-5">
+
+        {%if lote.prestacao or lote.prestacao!=0%}
+            <p>Valor Total {{lote.entrada+(lote.prestacao*lote.prestacao_vezes)}}</p>
+            <p>Entrada {{lote.entrada}}</p>
+            <p>Saldo em {{lote.prestacao_vezes}} vezes de {{lote.prestacao}}</p>
+        {%else%}
+            <p>Valor a vista {{lote.entrada}}</p>
+        {%endif%}
+
+        <h2>Qualificação dos Compradores</h2>
+        <p>Nome {{lote.comprador}}</p>
+        <p>CPF/CNPJ {{lote.cpf_cnpj}}</p>
+        <p>RG {{lote.rg}}</p>
+        <p>E-mail {{lote.email_comprador}}</p>
+        <p>Celular {{lote.celular}}</p>
+
+
+         <p>A presente proposta será analisada com critério e decisão exclusivos da Loteadora. Caso não aceita,
+         concordamos, desde já com o cancelamento desta proposta em todos os seus termos não cabendo qualquer
+         indenização entre as partes.</p>
+         <p>Em caso de aceitação declaro ter conhecimento de que os valores destinados à corretagem tem como
+         finalidade exclusiva o pagamento de comissões e despesas com promoção de vendas, portanto não são
+         despesas reembolsáveis.</p>
+         <br><br>
+         <p>Local______________________________________________________{{lote.data_venda}}</p>
+         <br><br>
+          <p>Comprador______________________________________________________</p>
+         <br><br>
+         <p>Vendedor______________________________________________________</p>
+        <button onclick="window.print()" class="btn btn-primary">Imprimir</button>
+     </div>
+</body>
+</html>

@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário</title>
+
+<script>
+
+    function toggleConjugeFields() {
+    const estadoCivil = document.getElementById('regime_casamento').value;
+    const conjugeFields = document.getElementById('conjuge-fields');
+    const cpfFields = document.getElementById('cpf-cnpj-fields');
+    const rgFields = document.getElementById('rg-fields');
+    const emailFields = document.getElementById('email-fields');
+    const celularFields = document.getElementById('celular-fields');
+    const nacionalidade_conjFields = document.getElementById('nacionalidade_conj-fields');
+    const profissao_conjFields = document.getElementById('profissao_conj-fields');
+    const estado_civil_conjFields = document.getElementById('estado_civil_conj-fields');
+
+
+    // Mostra ou esconde os campos com base na seleção
+
+    if (estadoCivil.startsWith('2 ')) {  // Modifiquei para verificar se começa com '2 '
+        conjugeFields.style.display = 'block';
+        cpfFields.style.display = 'block';
+        rgFields.style.display = 'block';
+        emailFields.style.display = 'block';
+        celularFields.style.display = 'block';
+        nacionalidade_conjFields.style.display = 'block';
+        profissao_conjFields.style.display = 'block';
+        estado_civil_conjFields.style.display = 'block';
+    } else {
+        conjugeFields.style.display = 'none';
+        cpfFields.style.display = 'none';
+        rgFields.style.display = 'none';
+        emailFields.style.display = 'none';
+        celularFields.style.display = 'none';
+        nacionalidade_conjFields.style.display = 'none';
+        profissao_conjFields.style.display = 'none';
+        estado_civil_conjFields.style.display = 'none';
+    }
+}
+
+</script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+<style>
+    /* CSS para cabeçalho fixo */
+    .header {
+        position: sticky; /* Para fixar o cabeçalho */
+        top: 0; /* Fica no topo da página */
+        background-color: white; /* Cor do fundo */
+        z-index: 1000; /* Para sobrepor outros elementos */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    }
+
+    /* Estilo para o formulário */
+    .form-container {
+        max-height: 400px; /* Altura máxima para o scroll */
+        overflow-y: auto; /* Ativa o scroll vertical */
+        padding: 20px; /* Espaçamento interno */
+        border: 1px solid #ccc; /* Borda do formulário */
+        margin-top: 10px; /* Espaço acima do formulário */
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<body onload="toggleConjugeFields()">
+<div class="container">
+    <div class="header">
+        <hr>
+        <div class="row">
+            <legend>Venda {{ lote.lote }} VENDEDOR->{{lote.autor_lote.username}}</legend>
+        </div>
+        <div class="row">
+            <div class="col col-12">
+                {%if current_user.permission_level=='supervisor'%}
+                <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">aprovar venda</button>
+                </a>
+                <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
+                </a>
+                {%endif%}
+                <a href="{{ url_for('cancelar_venda', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">Cancelar venda</button>
+                </a>
+                <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
+                </a>
+                <a href="{{ url_for('imprimir_dados_lgpd', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">imprimir lgpd</button>
+                </a>
+                <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
+                    <button class="btn btn-sm btn-outline-primary w-40">solicitar aprovação da venda</button>
+                </a>
+                <button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <form method="POST" action="{{ url_for('vender_lote', lote_id=lote.id) }}">
+            {{ form.hidden_tag() }}
+            <fieldset>
+
+                <div class="row">
+                    <div class="form-group">
+                        {{ form.tabela_preco_radio.label(class="form-control-label") }}
+                        {% if form.tabela_preco_radio.errors %}
+                        {{ form.tabela_preco_radio(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erro in form.tabela_preco_radio.errors %}
+                            {{ erro }}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.tabela_preco_radio(class="form-control") }}
+                        {% endif %}
+                    </div>
+                    <div class="row border mt-2 p-1 meupost">
+                        <div class="form-group col-md-6">
+                            {{ form.comprador.label(class="form-control-label") }}
+                            {% if form.comprador.errors %}
+                            {{ form.comprador(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.comprador.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.comprador(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ form.cpf_cnpj.label(class="form-control-label") }}
+                            {% if form.cpf_cnpj.errors %}
+                            {{ form.cpf_cnpj(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.cpf_cnpj.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.cpf_cnpj(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.rg.label(class="form-control-label") }}
+                            {% if form.rg.errors %}
+                            {{ form.rg(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.rg.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.rg(class="form-control") }}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class="row border mt-2 p-1 meupost">
+                        <div class="form-group col-md-2">
+                            {{ form.nacionalidade.label(class="form-control-label") }}
+                            {% if form.nacionalidade.errors %}
+                            {{ form.nacionalidade(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.nacionalidade.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.nacionalidade(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ form.profissao.label(class="form-control-label") }}
+                            {% if form.profissao.errors %}
+                            {{ form.profissao(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.profissao.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.profissao(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ form.email_comprador.label(class="form-control-label") }}
+                            {% if form.email_comprador.errors %}
+                            {{ form.email_comprador(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.email_comprador.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.email_comprador(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.celular.label(class="form-control-label") }}
+                            {% if form.celular.errors %}
+                            {{ form.celular(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.celular.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.celular(class="form-control") }}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="row border mt-2 p-1 meupost">
+                        <div class="form-group col-md-6">
+                            {{ form.endereco.label(class="form-control-label") }}
+                            {% if form.endereco.errors %}
+                            {{ form.endereco(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.endereco.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.endereco(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-3">
+                            {{ form.bairro.label(class="form-control-label") }}
+                            {% if form.bairro.errors %}
+                            {{ form.bairro(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.bairro.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.bairro(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-2">
+                            {{ form.cep.label(class="form-control-label") }}
+                            {% if form.cep.errors %}
+                            {{ form.cep(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.cep.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.cep(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row border mt-2 p-1 meupost">
+
+                        <div class="form-group col-md-6">
+                            {{ form.cidade.label(class="form-control-label") }}
+                            {% if form.cidade.errors %}
+                            {{ form.cidade(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.cidade.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.cidade(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-1">
+                            {{ form.uf.label(class="form-control-label") }}
+                            {% if form.uf.errors %}
+                            {{ form.uf(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.uf.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.uf(class="form-control") }}
+                            {% endif %}
+                        </div>
+
+
+                        <!--                        <div class="form-group">-->
+                        <div class="form-group col-md-4">
+                            {{ form.regime_casamento.label(class="form-control-label") }}
+                            {{ form.regime_casamento(id="regime_casamento", onchange="toggleConjugeFields()") }}
+                        </div>
+                    </div>
+                    <hr>
+                    <hr>
+                    <div class="row ">
+                        <div class="form-group col-md-6">
+                            <div id="conjuge-fields" style="display:none;">
+                                <label for="conjuge">Cônjuge</label>
+                                <input id="conjuge" name="conjuge" type="text" class="form-control"
+                                       value="{{ form.conjuge.data }}"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            <div id="cpf-cnpj-fields" style="display:none;">
+                                <label for="cpf_cnpj_conj">CPF</label>
+                             {% if form.cpf_cnpj_conj.errors %}
+                             {{ form.cpf_cnpj_conj(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.cpf_cnpj_conj.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+
+                                <input id="cpf_cnpj_conj" name="cpf_cnpj_conj" type="text" class="form-control"
+                                       value="{{ form.cpf_cnpj_conj.data }}"/>
+                            {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <div id="rg-fields" style="display:none;">
+                                <label for="rg_conj">RG</label>
+                                <input id="rg_conj" name="rg_conj" type="text" class="form-control"
+                                       value="{{ form.rg_conj.data }}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="form-group col-md-3">
+                        <div id="nacionalidade_conj-fields" style="display:none;">
+                            <label for="nacionalidade_conj">Nacionalidade Cônjuge</label>
+                            <input id="nacionalidade_conj" name="nacionalidade_conj" type="text" class="form-control"
+                                   value="{{ form.nacionalidade_conj.data }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div id="profissao_conj-fields" style="display:none;">
+                            <label for="profissao_conj">Profissão Cônjuge</label>
+                            <input id="profissao_conj" name="profissao_conj" type="text" class="form-control"
+                                   value="{{ form.profissao_conj.data }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <div id="email-fields" style="display:none;">
+                            <label for="email_conj">E-mail</label>
+                             {% if form.email_conj.errors %}
+                             {{ form.email_conj(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.email_conj.errors %}
+                                {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <input id="email_conj" name="email_conj" type="text" class="form-control"
+                                   value="{{ form.email_conj.data }}"/>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <div id="celular-fields" style="display:none;">
+                            <label for="celular_conj">Celular</label>
+                            <input id="celular_conj" name="celular_conj" type="text" class="form-control"
+                                   value="{{ form.celular_conj.data }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="form-group col-md-5">
+                        <div id="estado_civil_conj-fields" style="display:none;">
+                            <hr>
+<!--                            <label for="estado_civil_conj">Estado Civil Conjuge (somente para UNIÃO ESTÁVEL)</label>-->
+<!--                            {{ form.estado_civil_conj() }}  &lt;!&ndash; Renderiza o SelectField corretamente &ndash;&gt;-->
+                            {{ form.estado_civil_conj.label(class="form-control-label") }}
+                            {{ form.estado_civil_conj(id="estado_civil_conj") }}
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <!--            <div class="row border mt-2 p-1 meupost">-->
+
+            {{ form.botao_submit_venda(class="btn btn-primary") }}
+
+        </form>
+    </div>
+</div>
+</body>
+{% endblock %}
+

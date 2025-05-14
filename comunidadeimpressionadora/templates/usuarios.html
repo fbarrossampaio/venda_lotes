@@ -1,0 +1,197 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<div class="container mt-3">
+
+    <strong style="color: orange">usuário={{current_user.username}}/ permissão={{current_user.permission_level}}
+         </strong>
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!--        <div>-->
+        <div class="row border mt-2 p-1 meupost">
+            <div class="col-12 col-sm-2">
+                {{ form.filtro_nome_usuario.label }}<br>
+                {{ form.filtro_nome_usuario() }}
+            </div>
+             <div class="col-12 col-sm-1">
+                <strong>   </strong>
+            </div>
+            <div class="col-12 col-sm-2">
+                <button type="submit">{{ form.botao_submit.label }}</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const usuarioId = urlParams.get('usuario_id');
+
+        if (usuarioId) {
+            const elementoLote = document.getElementById(`usuario-${usuarioId}`);
+            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
+
+            if (elementoLote && tabelaContainer) {
+                // Obter a posição do elemento
+                const rect = elementoLote.getBoundingClientRect();
+                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
+
+                // Rolar para a posição do lote dentro do container
+                tabelaContainer.scrollTo({
+                    top: offset - 100, // Ajusta 100 pixels para cima
+                    behavior: 'smooth' // Rolagem suave
+                });
+            }
+        }
+    });
+</script>
+
+
+<!--        <div class="row border mt-2 p-1 meupost">-->
+<!--            <div class="col col-2">-->
+<!--                <strong>filtros</strong>  &lt;!&ndash; Renderiza o SelectField &ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="col col-2">-->
+<!--                <strong>filtros</strong>  &lt;!&ndash; Renderiza o SelectField &ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="col col-2">-->
+<!--                <strong>filtros</strong>  &lt;!&ndash; Renderiza o SelectField &ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+    <hr>
+    <style>
+        .tabela-container {
+            max-height: 400px; /* Define a altura máxima para o container */
+            overflow-y: auto; /* Permite rolagem vertical */
+        }
+        table {
+            width: 100%; /* Largura total da tabela */
+            border-collapse: collapse; /* Combina bordas */
+        }
+        th, td {
+            padding: 8px; /* Espaçamento interno */
+            text-align: left; /* Alinhamento do texto */
+        }
+        thead th {
+            position: sticky; /* Torna o cabeçalho fixo */
+            top: 0; /* Posiciona o cabeçalho no topo do container */
+            background-color: white; /* Fundo para o cabeçalho */
+            z-index: 10; /* Para garantir que o cabeçalho fique acima do conteúdo */
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Cor de fundo alternada para linhas */
+        }
+    </style>
+    <div class="tabela-container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                {% if current_user.permission_level == 'supervisor' %}
+                <th>Cadastro</th>
+               <th>Nome</th>
+                <th>E-mail</th>
+                <th>Imobiliária</th>
+<!--                <th>permission_level</th> -->
+                <th style="border-inline: 2px solid black">Nível Permição</th>
+
+
+                {% else %}
+                 <th>Cadastro</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Imobiliária</th>
+
+                <th style="border-inline: 2px solid black">permission_level</th>
+
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for usuario in lista_usuarios%}
+            {% if current_user.permission_level == 'supervisor' or usuario.email == current_user.email
+                and current_user.permission_level=='corretor'%}
+            <tr>
+            <tr id="usuario-{{ usuario.id }}">
+               <td>
+
+                    <a href="{{ url_for('alterar_conta', usuario_id=usuario.id) }}"
+                     class="btn btn-sm btn-outline-danger"><small>cadastro</small></a>
+               </td>
+                {% if usuario.id==usuario_id_n%}
+
+                    <td style="background-color:#00FF00 ">{{usuario.username}}</td>
+                    <td style="background-color:#00FF00 ">{{ usuario.email }}</td>
+                    {% if usuario.empresa is none %}
+                        <td style="background-color:#00FF00 "><small>{{ usuario.empresa}}</small></td>
+                    {% else%}
+                        <td style="background-color:#00FF00 "><small>{{ usuario.empresa[0:20] }}</small></td>
+                    {%endif %}
+                {% else%}
+                    <td>{{usuario.username}}</td>
+                    <td>{{ usuario.email }}</td>
+                    {% if usuario.empresa is none %}
+                        <td><small>{{ usuario.empresa}}</small></td>
+                    {% else%}
+                        <td><small>{{ usuario.empresa[0:20] }}</small></td>
+                    {%endif %}
+                {% endif%}
+
+<!--                <td>-->
+                {% if usuario.permission_level == 'supervisor'%}
+                    <td style="border-inline: 2px solid black; background-color: blue; color: white; font-size: 22px;">
+                    {{usuario.permission_level }} </td>
+                {% elif usuario.permission_level == 'Não informado'%}
+                    <td style="border-inline: 2px solid black; background-color: red; color: white; font-size: 22px;">
+                    {{usuario.permission_level }}</td>
+                {% elif usuario.permission_level == 'corretor'%}
+                    <td style="border-inline: 2px solid black; background-color: green; color: white; font-size: 22px;">
+                    {{usuario.permission_level }}</td>
+                {% elif usuario.permission_level == 'Desaprovado'%}
+                    <td style="border-inline: 2px solid black; background-color: black; color: red; font-size: 22px;">
+                    {{usuario.permission_level }}</td>
+                {%endif %}
+
+<!--</td>-->
+
+
+           <td>
+              {%if usuario.id !=1 and current_user.permission_level == 'supervisor'%}
+               <td>
+                  <a href="{{ url_for('aprovar_corretor', usuario_id=usuario.id) }}"
+                         class="btn btn-sm btn-outline-success "><small>Aprovar corretor</small></a>
+                </td>
+                <td>
+                  <a href="{{ url_for('aprovar_supervisor', usuario_id=usuario.id) }}"
+                         class="btn btn-sm btn-outline-primary "><small>Aprovar supervisor</small></a>
+                </td>
+                <td>
+                  <a href="{{ url_for('desaprovar_usuario', usuario_id=usuario.id) }}"
+                         class="btn btn-sm btn-outline-dark"><small>Desaprovar usuário</small></a>
+                 </td>
+                {%else %}
+
+                    {%if usuario.id ==1 and current_user.permission_level == 'supervisor'%}
+                     <td>
+                        <p>Este usuário não pode ser alterado</p>
+                     </td>
+                    {%endif%}
+
+              {%endif %}
+
+</tr>
+          {%endif%}
+          {%endfor%}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{%endblock%}

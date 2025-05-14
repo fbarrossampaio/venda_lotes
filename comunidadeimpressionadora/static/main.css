@@ -1,0 +1,61 @@
+
+
+.card {
+    width: 100%; /* Ajusta para ocupar toda a largura disponível */
+    max-width: 400px; /* Define um limite máximo */
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
+
+.stats{
+
+      background: #f2f5f8 !important;
+
+    color: #000 !important;
+}
+.articles{
+  font-size:10px;
+  color: #a1aab9;
+}
+.number1{
+  font-weight:500;
+}
+.followers{
+    font-size:10px;
+  color: #a1aab9;
+
+}
+.number2{
+  font-weight:500;
+}
+.rating{
+    font-size:10px;
+  color: #a1aab9;
+}
+.number3{
+  font-weight:500;
+}
+
+.meupost{
+    background: #f2f5f8 !important;
+
+}
+@media (max-width: 768px) {
+    .container {
+        padding-left: 0; /* Remove o preenchimento à esquerda */
+        padding-right: 0; /* Remove o preenchimento à direita */
+        margin-left: 0; /* Remove a margem à esquerda */
+        margin-right: 0; /* Remove a margem à direita */
+    }
+    .row {
+        margin-left: 0; /* Remove a margem à esquerda das linhas */
+        margin-right: 0; /* Remove a margem à direita das linhas */
+    }
+    .col {
+        padding-left: 5px; /* Ajuste do padding para melhor visualização */
+        padding-right: 5px;
+    }
+}

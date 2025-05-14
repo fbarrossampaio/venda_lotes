@@ -1,0 +1,196 @@
+{%extends 'base.html'%}
+{%block head%}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lOTES</title>
+
+
+{%endblock%}
+{%block body%}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loteId = urlParams.get('lote_id');
+
+        if (loteId) {
+            const elementoLote = document.getElementById(`lote-${loteId}`);
+            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
+
+            if (elementoLote && tabelaContainer) {
+                // Obter a posição do elemento
+                const rect = elementoLote.getBoundingClientRect();
+                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
+
+                // Rolar para a posição do lote dentro do container
+                tabelaContainer.scrollTo({
+                    top: offset - 100, // Ajusta 100 pixels para cima
+                    behavior: 'smooth' // Rolagem suave
+                });
+            }
+        }
+    });
+</script>
+
+
+<div class="container mt-1">
+    <strong style="color: orange">usuário {{current_user.username}}-->{{current_user.permission_level}}
+         </strong>
+
+    <form method="POST" action="/">
+        {{ form.hidden_tag() }}
+        <!--        <div>-->
+        <div class="row border mt-2 p-1 meupost">
+            <div class="col-12 col-sm-2">
+                {{ form.letra.label }}<br>
+                {{ form.letra() }}
+            </div>
+            <div class="col-12 col-sm-2">
+                {{ form.valor_minimo.label }}<br>
+                {{ form.valor_minimo() }}
+            </div>
+            <div class="col-12 col-sm-2">
+                {{ form.valor_maximo.label }}<br>
+                {{ form.valor_maximo() }}
+            </div>
+            <div class="col-12 col-sm-2">
+                {{ form.ordem.label }}<br>
+                {{ form.ordem() }}
+            </div>
+            <div class="col-12 col-sm-2">
+                <button type="submit">{{ form.submit.label }}</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <style>
+        .tabela-container {
+            max-height: 400px; /* Define a altura máxima para o container */
+            overflow-y: auto; /* Permite rolagem vertical */
+        }
+        table {
+            width: 100%; /* Largura total da tabela */
+            border-collapse: collapse; /* Combina bordas */
+        }
+        th, td {
+            padding: 8px; /* Espaçamento interno */
+            text-align: left; /* Alinhamento do texto */
+        }
+        thead th {
+            position: sticky; /* Torna o cabeçalho fixo */
+            top: 0; /* Posiciona o cabeçalho no topo do container */
+            background-color: white; /* Fundo para o cabeçalho */
+            z-index: 10; /* Para garantir que o cabeçalho fique acima do conteúdo */
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Cor de fundo alternada para linhas */
+        }
+    </style>
+    <div class="tabela-container">-->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                {% if current_user.permission_level == 'supervisor' %}
+                    <th>Lote</th>
+                    <th>Ações</th>  <!-- Coluna para ações -->
+                    <th>Área</th>
+                    <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
+                    <th>Entrada</th>
+                    <th>100 X</th>
+                    <th style="border-left: 2px solid black;">12 X</th>
+                    <th>24 X</th>
+                    <th>36 X</th>
+                    <th>48 X</th>
+                    <th>60 X</th>
+                    <th>Vendedor</th>
+                    <th>Ações Superv.</th>
+                {% else %}
+                    <th>Lote</th>
+                    <th>Ações</th>  <!-- Coluna para ações -->
+                    <th>Área</th>
+                    <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
+                    <th>Entrada</th>
+                    <th>100 X</th>
+                    <th style="border-left: 2px solid black;">12 X</th>
+                    <th>24 X</th>
+                    <th>36 X</th>
+                    <th>48 X</th>
+                    <th>60 X</th>
+
+                {% endif %}
+            </tr>
+
+            </thead>
+            <tbody>
+            {% for lote in lotes %}
+
+            {% if (lote.autor_lote.username != current_user.username and current_user.permission_level == 'corretor'
+            and lote.status == 'Em cadastramento') or (current_user.liberado_por is none) %}
+            {%else%}
+
+            <tr id="lote-{{ lote.id }}"> <!-- Adiciona um ID para cada linha -->
+                <!--            <tr>-->
+
+               {%if lote.id==lote_id_n%}
+                   <td style="background-color:#00FF00 ">{{lote.lote}}</td>
+               {%else%}
+                   <td>{{lote.lote}}</td>
+               {%endif%}
+
+                <td>
+                    {%if lote.autor_lote.liberado_por%}
+                        {%if lote.status=='Em cadastramento'%}
+                            {%if lote.data_venda%}
+                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                               class="btn btn-sm btn-outline-danger">{{ "{} {:,.0f} Dias".format(lote.status[0:10],(data_atual -
+                                lote.data_venda).days) }} </a>
+                            {%endif%}
+                        {%elif lote.status=='Vendido'%}
+                            <button class="btn btn-sm btn-outline-primary w-70">{{ lote.status[0:10] }}</button>
+                        {%elif lote.status=='Aguardando aprovação'%}
+                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                               class="btn btn-sm btn-outline-warning">{{ lote.status[0:16] }}</a>
+                        {%else%}
+                            <button class="btn btn-sm btn-dark w-70">{{ lote.status[0:10]}} </button>
+                        {%endif%}
+                    {%else%}
+                        {%if lote.status=='Disponivel'%}
+                        <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                           class="btn btn-sm btn-outline-success">{{ lote.status[0:10] }}</a>
+                        {%else%}
+                        <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                           class="btn btn-sm btn-dark">{{ lote.status[0:7] }} vendedor desaprovado</a>
+                        {%endif%}
+                    {%endif%}
+                </td>
+                <td>{{ lote.area }}</td>
+                <td style="border-left: 2px solid black;">
+                    {{ "{:,.0f}".format(lote.tabela_lote.avista) }}
+                </td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.entrada) }}</td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_100_pr) }}</td>
+                <td style="border-left: 2px solid black;">{{ "{:,.0f}".format(lote.tabela_lote.em_12_pr) }}</td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_24_pr) }}</td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_36_pr) }}</td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_48_pr) }}</td>
+                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_60_pr) }}</td>
+                <!--                 {%if lote.data_venda%}-->
+                <!--                 <td>{{(data_atual - lote.data_venda).days}}</td>-->
+                <!--                {%endif%}-->
+
+                {%if lote.data_venda and current_user.permission_level=='supervisor'
+                and not lote.status=='Cancelado'%}
+                <td>{{lote.autor_lote.username[0:10]}}</td>
+                <td><a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                       class="btn btn-sm btn-outline-success">Ações</a></td>
+                {%endif%}
+
+            </tr>
+            {%endif%}
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+{%endblock%}

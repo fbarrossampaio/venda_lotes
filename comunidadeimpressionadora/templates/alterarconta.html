@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container">
+    <h1>ALTERAR CONTA</h1>
+     <strong>{{usuario.username}}</strong>
+     <strong>{{usuario.email}}</strong>
+                        <input type="hidden" name="id" value="{{ usuario.id }}">
+    <hr>
+    <div class="row">
+        <div class="col">
+            <form method="post" action="" class="border p-4 mt-2">
+                {{form_alterarconta.csrf_token}}
+                <legend>alterar conta</legend>
+                <fieldset>
+                <input type="hidden" name="id" value="{{ usuario.id }}">
+                    <div class="form-group">
+                        {{form_alterarconta.email.label(class="form-control-label")}}
+                        {%if form_alterarconta.email.errors%}
+                        {{form_alterarconta.email(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for erro in form_alterarconta.email.errors%}
+                            {{erro}}
+                            {%endfor%}
+                        </div>
+                        {%else%}
+                        {{form_alterarconta.email(class="form-control")}}
+                        {%endif %}
+                    </div>
+                    <div class="form-group">
+                        {{form_alterarconta.celular_usuario.label(class="form-control-label")}}
+                        {%if form_alterarconta.celular_usuario.errors%}
+                        {{form_alterarconta.celular_usuario(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for erro in form_alterarconta.celular_usuario.errors%}
+                            {{erro}}
+                            {%endfor%}
+                        </div>
+                        {%else%}
+                        {{form_alterarconta.celular_usuario(class="form-control")}}
+                        {%endif %}
+                    </div>
+                    <div class="form-group">
+                        {{form_alterarconta.creci.label(class="form-control-label")}}
+                        {%if form_alterarconta.creci.errors%}
+                        {{form_alterarconta.creci(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for erro in form_alterarconta.creci.errors%}
+                            {{erro}}
+                            {%endfor%}
+                        </div>
+                        {%else%}
+                        {{form_alterarconta.creci(class="form-control")}}
+                        {%endif %}
+                    </div>
+                    <div class="form-group">
+                        {{form_alterarconta.nova_senha.label(class="form-control-label")}}
+                        {%if form_alterarconta.nova_senha.errors%}
+                        {{form_alterarconta.nova_senha(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for erro in form_alterarconta.nova_senha.errors%}
+                            {{erro}}
+                            {%endfor%}
+                        </div>
+                        {%else%}
+                        {{form_alterarconta.nova_senha(class="form-control")}}
+                        {%endif %}
+                    </div>
+                    <div class="form-group">
+                        {{form_alterarconta.confirmacao_nova_senha.label(class="form-control-label")}}
+                        {%if form_alterarconta.confirmacao_nova_senha.errors%}
+                        {{form_alterarconta.confirmacao_nova_senha(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {%for erro in form_alterarconta.confirmacao_nova_senha.errors%}
+                            {{erro}}
+                            {%endfor%}
+                        </div>
+                        {%else%}
+                        {{form_alterarconta.confirmacao_nova_senha(class="form-control")}}
+                        {%endif %}
+                    </div>
+                </fieldset>
+
+                {{form_alterarconta.botao_submit_alterarconta(class="btn btn-primary")}}
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
