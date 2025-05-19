@@ -122,68 +122,68 @@
             <tbody>
             {% for lote in lotes %}
 
-            {% if (lote.autor_lote.username != current_user.username and current_user.permission_level == 'corretor'
-            and lote.status == 'Em cadastramento') or (current_user.liberado_por is none) %}
+            {% if (lote.autor_lote.username != current_user.username
+                 and current_user.permission_level == 'corretor'
+                 and lote.status != 'Disponivel') or (current_user.liberado_por is none) %}
             {%else%}
-
-            <tr id="lote-{{ lote.id }}"> <!-- Adiciona um ID para cada linha -->
-                <!--            <tr>-->
-
-               {%if lote.id==lote_id_n%}
-                   <td style="background-color:#00FF00 ">{{lote.lote}}</td>
-               {%else%}
-                   <td>{{lote.lote}}</td>
-               {%endif%}
-
-                <td>
-                    {%if lote.autor_lote.liberado_por%}
-                        {%if lote.status=='Em cadastramento'%}
-                            {%if lote.data_venda%}
-                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn-outline-danger">{{ "{} {:,.0f} Dias".format(lote.status[0:10],(data_atual -
-                                lote.data_venda).days) }} </a>
-                            {%endif%}
-                        {%elif lote.status=='Vendido'%}
-                            <button class="btn btn-sm btn-outline-primary w-70">{{ lote.status[0:10] }}</button>
-                        {%elif lote.status=='Aguardando aprovação'%}
-                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn-outline-warning">{{ lote.status[0:16] }}</a>
-                        {%else%}
-                            <button class="btn btn-sm btn-dark w-70">{{ lote.status[0:10]}} </button>
-                        {%endif%}
+                <tr id="lote-{{ lote.id }}"> <!-- Adiciona um ID para cada linha -->
+                    {%if lote.id==lote_id_n%}
+                       <td style="background-color:#00FF00 ">{{lote.lote}}</td>
                     {%else%}
-                        {%if lote.status=='Disponivel'%}
-                        <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                           class="btn btn-sm btn-outline-success">{{ lote.status[0:10] }}</a>
-                        {%else%}
-                        <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                           class="btn btn-sm btn-dark">{{ lote.status[0:7] }} vendedor desaprovado</a>
-                        {%endif%}
+                       <td>{{lote.lote}}</td>
                     {%endif%}
-                </td>
-                <td>{{ lote.area }}</td>
-                <td style="border-left: 2px solid black;">
-                    {{ "{:,.0f}".format(lote.tabela_lote.avista) }}
-                </td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.entrada) }}</td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_100_pr) }}</td>
-                <td style="border-left: 2px solid black;">{{ "{:,.0f}".format(lote.tabela_lote.em_12_pr) }}</td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_24_pr) }}</td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_36_pr) }}</td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_48_pr) }}</td>
-                <td>{{ "{:,.0f}".format(lote.tabela_lote.em_60_pr) }}</td>
-                <!--                 {%if lote.data_venda%}-->
-                <!--                 <td>{{(data_atual - lote.data_venda).days}}</td>-->
-                <!--                {%endif%}-->
 
-                {%if lote.data_venda and current_user.permission_level=='supervisor'
-                and not lote.status=='Cancelado'%}
-                <td>{{lote.autor_lote.username[0:10]}}</td>
-                <td><a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                       class="btn btn-sm btn-outline-success">Ações</a></td>
-                {%endif%}
+                    <td>
+                        {%if lote.autor_lote.liberado_por%}
+                            {%if lote.status=='Em cadastramento'%}
+                                {%if lote.data_venda%}
+                                <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                                   class="btn btn-sm btn-outline-danger">
+                                    {{ "{} {:,.0f} Dias".format(lote.status[0:10],
+                                    (data_atual - lote.data_venda).days) }} </a>
+                                {%endif%}
+                            {%elif lote.status=='Vendido'%}
+                                <button class="btn btn-sm btn-outline-primary w-70">
+                                    {{ lote.status[0:10] }}</button>
+                            {%elif lote.status=='Aguardando aprovação'%}
+                                <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                                   class="btn btn-sm btn-outline-warning">{{ lote.status[0:16] }}</a>
+                            {%else%}
+                                <button class="btn btn-sm btn-dark w-70">{{ lote.status[0:10]}} </button>
+                            {%endif%}
+                        {%else%}
+                            {%if lote.status=='Disponivel'%}
+                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                               class="btn btn-sm btn-outline-success">{{ lote.status[0:10] }}</a>
+                            {%else%}
+                            <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                               class="btn btn-sm btn-dark">{{ lote.status[0:10] }} <br> vendedor desaprovado</a>
+                            {%endif%}
+                        {%endif%}
+                    </td>
+                    <td>{{ lote.area }}</td>
+                    <td style="border-left: 2px solid black;">
+                        {{ "{:,.0f}".format(lote.tabela_lote.avista) }}
+                    </td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.entrada) }}</td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.em_100_pr) }}</td>
+                    <td style="border-left: 2px solid black;">{{ "{:,.0f}".format(lote.tabela_lote.em_12_pr) }}</td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.em_24_pr) }}</td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.em_36_pr) }}</td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.em_48_pr) }}</td>
+                    <td>{{ "{:,.0f}".format(lote.tabela_lote.em_60_pr) }}</td>
+                    <!--                 {%if lote.data_venda%}-->
+                    <!--                 <td>{{(data_atual - lote.data_venda).days}}</td>-->
+                    <!--                {%endif%}-->
 
-            </tr>
+                    {%if lote.data_venda and current_user.permission_level=='supervisor'
+                        and not lote.status=='Cancelado'%}
+                        <td>{{lote.autor_lote.username[0:10]}}</td>
+                        <td><a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                               class="btn btn-sm btn-outline-success">Ações</a></td>
+                    {%endif%}
+
+                </tr>
             {%endif%}
             {% endfor %}
 
