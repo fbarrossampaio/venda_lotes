@@ -2,7 +2,6 @@
 {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formulário</title>
-
 <script>
 
     function toggleConjugeFields() {
@@ -69,33 +68,56 @@
 {% block body %}
 <body onload="toggleConjugeFields()">
 <div class="container">
+    <strong style="color: orange">usuário={{current_user.username}}/ permissão={{current_user.permission_level}}
+    </strong>
     <div class="header">
         <hr>
         <div class="row">
-            <legend>Venda {{ lote.lote }} VENDEDOR->{{lote.autor_lote.username}}</legend>
+            <strong>LOTE: {{ lote.lote }} -> VENDEDOR: {{lote.autor_lote.username}}-> STATUS DO LOTE: {{lote.status}}</strong>
         </div>
         <div class="row">
             <div class="col col-12">
-                {%if current_user.permission_level=='supervisor'%}
-                <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">aprovar venda</button>
-                </a>
-                <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
-                </a>
+                {%if lote.status!='Disponivel'%}
+                    {%if current_user.permission_level=='supervisor'%}
+                        {%if lote.status!='Vendido'%}
+                            <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
+                                <button class="btn btn-sm btn-outline-primary w-40">aprovar venda</button>
+                            </a>
+                        {%endif%}
+                        <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
+                            <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
+                        </a>
+                    {%endif%}
+                    <a href="{{ url_for('cancelar_venda', lote_id=lote.id) }}" onclick="return confirm('Tem certeza que deseja cancelar a venda?');">
+                        <button class="btn btn-sm btn-outline-primary w-40">Cancelar venda</button>
+                    </a>
+                    <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
+                        <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
+                    </a>
+                    <a href="{{ url_for('imprimir_dados_lgpd', lote_id=lote.id) }}">
+                        <button class="btn btn-sm btn-outline-primary w-40">imprimir lgpd</button>
+                    </a>
+                    {%if lote.status!='Vendido'%}
+                        {%if lote.status!='Aguardando aprovação' and current_user.permission_level=='corretor'%}
+                            <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
+                                <button class="btn btn-sm btn-outline-primary w-40">
+                                    solicitar aprovação da venda</button>
+                            </a>
+                        {%elif current_user.permission_level=='corretor'%}
+                             <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
+                                <button class="btn btn-sm btn-outline-primary w-40">
+                                    Extorno da solicitação de aprovação </button>
+                            </a>
+                        {%endif%}
+                    {%elif current_user.permission_level=='supervisor'%}
+                         <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}"
+                            onclick="return confirm(
+                            'Esta venda já foi APROVADA,Tem certeza que deseja EXTORNAR A APROVAÇÃO permitindo que o vendedor volte a fazer alterações?');">
+                            <button class="btn btn-sm btn-outline-primary w-40">
+                                extornar aprovação da venda</button>
+                        </a>
+                    {%endif%}
                 {%endif%}
-                <a href="{{ url_for('cancelar_venda', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">Cancelar venda</button>
-                </a>
-                <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
-                </a>
-                <a href="{{ url_for('imprimir_dados_lgpd', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">imprimir lgpd</button>
-                </a>
-                <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
-                    <button class="btn btn-sm btn-outline-primary w-40">solicitar aprovação da venda</button>
-                </a>
                 <button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button>
             </div>
         </div>
@@ -159,7 +181,6 @@
                             {{ form.rg(class="form-control") }}
                             {% endif %}
                         </div>
-
                     </div>
                     <div class="row border mt-2 p-1 meupost">
                         <div class="form-group col-md-2">
@@ -392,4 +413,3 @@
 </div>
 </body>
 {% endblock %}
-
