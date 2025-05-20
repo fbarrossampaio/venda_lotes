@@ -343,8 +343,8 @@ def desaprovar_usuario(usuario_id):
 @login_required
 def sair():
     logout_user()
-    flash(f'logout feito com sucesso', 'alert-success')
-    return redirect(url_for('home'))
+    #flash(f'logout feito com sucesso', 'alert-success')
+    return redirect(url_for('login'))
 ##################criar post/perfil##################
 # @app.route("/perfil")
 # @login_required
