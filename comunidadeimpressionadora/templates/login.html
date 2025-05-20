@@ -1,82 +1,73 @@
-{%extends 'base.html'%}
-{%block body%}
-<div class="container">
-
-    <hr>
-    <div class="row">
-        <div class="col">
-            <form method="post" action="" class="border p-4 mt-2">
-                {{form_login.hidden_tag()}}
-                <!-- layout ->utilities-> Margin and padding                          -->
+{% extends 'base.html' %}
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> <!-- Definindo a largura da coluna -->
+            <form method="post" action="" class="border p-4">
+                {{ form_login.hidden_tag() }}
                 <fieldset>
                     <legend>Faça seu login</legend>
-<!--                    <div class="form-group">-->
-                    <div class="row border mt-2 p-1 meupost">
-                        <div class="form-group col-md-6">
-                            {{form_login.email.label(class="form-control-label")}}
-                            {%if form_login.email.errors%}
-                            {{form_login.email(class="form-control is-invalid")}}
+                    <div class="form-group">
+                        {{ form_login.email.label(class="form-control-label") }}
+                        {% if form_login.email.errors %}
+                            {{ form_login.email(class="form-control is-invalid") }}
                             <div class="invalid-feedback">
-                                {%for erro in form_login.email.errors%}
-                                {{erro}}
-                                {%endfor%}
+                                {% for erro in form_login.email.errors %}
+                                    {{ erro }}
+                                {% endfor %}
                             </div>
-                            {%else%}
-                            {{form_login.email(class="form-control")}}
-                            {%endif %}
-                        </div>
-                    </div>
-                    <div class="row border mt-2 p-1 meupost">
-                        <div class="form-group col-md-6">
-                            {{form_login.senha.label(class="form-control-label")}}
-                            {%if form_login.senha.errors%}
-                            {{form_login.senha(class="form-control is-invalid")}}
-                            <div class="invalid-feedback">
-                                {%for erro in form_login.senha.errors%}
-                                {{erro}}
-                                {%endfor%}
-                            </div>
-                            {%else%}
-                            {{form_login.senha(class="form-control")}}
-                            {%endif %}
-                         </div>
+                        {% else %}
+                            {{ form_login.email(class="form-control") }}
+                        {% endif %}
                     </div>
                     <div class="form-group">
-
-                        {{form_login.lembrar_dados.label(class="form-check-label")}}
-                        {{form_login.lembrar_dados(class="form-check-input")}}
+                        {{ form_login.senha.label(class="form-control-label") }}
+                        {% if form_login.senha.errors %}
+                            {{ form_login.senha(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form_login.senha.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form_login.senha(class="form-control") }}
+                        {% endif %}
                     </div>
-
+                    <div class="form-group">
+                        {{ form_login.lembrar_dados.label(class="form-check-label") }}
+                        {{ form_login.lembrar_dados(class="form-check-input") }}
+                    </div>
                 </fieldset>
-                {{form_login.botao_submit_login(class="btn btn-primary")}}
+                {{ form_login.botao_submit_login(class="btn btn-primary") }}
             </form>
         </div>
 
-<!--        <div class="col">-->
-            <form method="post" action="" class="border p-4 mt-2">
+        <div class="col-md-6">
+            <form method="post" action="" class="border p-4">
                 {{ form_cnpj_novo.hidden_tag() }}
-                <legend>Para criar sua conta digite seu CNPJ 61701280000150</legend>
+                <legend>Para criar sua conta digite seu CNPJ</legend>
                 <fieldset>
-                    <div class="row border mt-2 p-1 meupost">
-                        <div class="form-group col-md-6">
-                            {{ form_cnpj_novo.cnpj.label(class="form-control-label") }}
-                            {% if form_cnpj_novo.cnpj.errors %}
+                    <div class="form-group">
+                        {{ form_cnpj_novo.cnpj.label(class="form-control-label") }}
+                        {% if form_cnpj_novo.cnpj.errors %}
                             {{ form_cnpj_novo.cnpj(class="form-control is-invalid") }}
                             <div class="invalid-feedback">
                                 {% for erro in form_cnpj_novo.cnpj.errors %}
-                                {{ erro }}
+                                    {{ erro }}
                                 {% endfor %}
                             </div>
-                            {% else %}
+                        {% else %}
                             {{ form_cnpj_novo.cnpj(class="form-control") }}
-                            {% endif %}
-                        </div>
+                        {% endif %}
                     </div>
                 </fieldset>
                 {{ form_cnpj_novo.botao_submit_cnpj(class="btn btn-primary") }}
             </form>
-
-<!--        </div>-->
+        </div>
     </div>
 </div>
-{%endblock%}
+{% endblock %}
