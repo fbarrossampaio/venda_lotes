@@ -58,7 +58,8 @@ def verificar_dados_nao_preenchidos(lote):
         dados_nao_preenchidos.append('CEP')
     if lote.cidade is None or lote.cidade.strip() == '':
         dados_nao_preenchidos.append('Cidade')
-
+    if lote.regime_casamento is None or lote.regime_casamento.strip() == '':
+        dados_nao_preenchidos.append('Estado Civíl/Regime de Casamento')
     # Se o regime de casamento é 'casado' ou 'união estável'
     if lote.regime_casamento.startswith('2'):
         if lote.conjuge is None or lote.conjuge.strip() in [None, '', 'None']:
@@ -182,7 +183,7 @@ def login():
     if form_login.validate_on_submit() and 'botao_submit_login' in request.form:
         usuario = Usuario.query.filter_by(email=form_login.email.data).first()
         if usuario and bcrypt.check_password_hash(usuario.senha,
-                                                  form_login.senha.data) and usuario.liberado_por is not None:
+              form_login.senha.data) and usuario.liberado_por is not None:
             login_user(usuario, remember=form_login.lembrar_dados.data)
             flash(f'Login ok {form_login.email.data}', 'alert-success')
             par_next = request.args.get('next')
@@ -594,7 +595,7 @@ def vender_lote(lote_id):
              cpf_cnpj = form.cpf_cnpj.data
              lote.cpf_cnpj = formatar_cpf_cnpj(cpf_cnpj)  # Chamando a função de formatação
              #database.session.commit()
-             if lote.regime_casamento=='aaasolteiro':
+             if lote.regime_casamento=='aaasolteiro': #desativando opção
                  database.session.commit()
                  flash(wmensagem, 'alert-success')
                  return redirect(url_for('home', lote_id=lote.id))
@@ -609,8 +610,14 @@ def vender_lote(lote_id):
                  lote.profissao_conj=form.profissao_conj.data
                  lote.estado_civil_conj=form.estado_civil_conj.data
                  database.session.commit()
-
-                 flash(wmensagem, 'alert-success')
+                 campos_faltando = verificar_dados_nao_preenchidos(lote)  # Salva o resultado da função
+                 # complemento_dados_n_p =''
+                 if campos_faltando:  # Substitua `dados_nao_preenchidos` por `campos_faltando`
+                     complemento_dados_n_p = f'Dados incompletos: {", ".join(campos_faltando)}'
+                     wmensagem=wmensagem+'(com sucesso)-->'+complemento_dados_n_p
+                     flash(wmensagem, 'alert-danger')
+                 else:
+                     flash(wmensagem, 'alert-success')
                  return redirect(url_for('home', lote_id=lote.id))
 
     else:
@@ -633,24 +640,34 @@ def aprovar_venda(lote_id):
     else:
         abort(403)
 
+
 @app.route("/venderlote/<lote_id>/solicitar_aprovacao", methods=["GET", "POST"])
 @login_required
 def solicitar_aprovacao(lote_id):
     lote = Lote.query.get(lote_id)
     if lote:
         campos_faltando= verificar_dados_nao_preenchidos(lote)  # Salva o resultado da função
+        #complemento_dados_n_p =''
         if campos_faltando:  # Substitua `dados_nao_preenchidos` por `campos_faltando`
             complemento_dados_n_p = f'Dados incompletos: {", ".join(campos_faltando)}'
 
         if current_user.permission_level == 'supervisor' or current_user==lote.autor_lote:
             # lote.data_solicitacao_aprov = datetime.now()
-            lote.status = 'Aguardando aprovação'
+            mensagem_aprov=''
+            if lote.status!='Aguardando aprovação':
+                lote.status = 'Aguardando aprovação'
+                mensagem_aprov = 'enviada'
+            else:
+                lote.status = 'Em cadastramento'
+                mensagem_aprov = 'extornada'
             database.session.commit()
-            flash(f'Solicitação de aprovação enviada {lote.lote} {complemento_dados_n_p}', 'alert-danger')
+            if campos_faltando:
+               flash(f'Solicitação de aprovação do lote {lote.lote} {mensagem_aprov} (com sucesso) {complemento_dados_n_p}', 'alert-danger')
+            else:
+                flash(f'Solicitação de aprovação do lote {lote.lote} {mensagem_aprov} com sucesso ', 'alert-success')
             return redirect(url_for('home', lote_id=lote.id))
         else:
             abort(403)
-
 
 
 @app.route("/venderlote/<lote_id>/exportar", methods=["GET", "POST"])
@@ -731,12 +748,35 @@ def exportar_lote_para_txt(lote_id):
         ]
         dados_cabecalho='; '.join(lista_cabecalho)+ '\n'
         dados_lote = '; '.join(lista_dados) + '\n'
-
+        #from flask import Response
         dados_final=dados_cabecalho+dados_lote
         # Criar a resposta para download
         response = Response(dados_final, mimetype='text/plain')
         response.headers["Content-Disposition"] = f"attachment; filename=lote_{lote.lote}_exportado.txt"
         return response
+
+    flash('Lote não encontrado.', 'alert-danger')
+    return redirect(url_for('home'))
+
+    #     try:
+    #         # Obter o nome do usuário atual
+    #         nome_usuario = os.getlogin()
+    #
+    #         # Construir o caminho para a pasta de Downloads
+    #         caminho_downloads = f'C:\\Users\\{nome_usuario}\\Downloads\\lote {lote.lote} exportado.txt'
+    #         with open(caminho_downloads, 'w') as arquivo:
+    #             arquivo.write(dados_lote)
+    #
+    #         flash(f'Dados lote {lote.lote} exportados com sucesso!', 'alert-success')
+    #     except PermissionError:
+    #         #print("Erro: O arquivo está em uso. Feche o arquivo e tente novamente.")
+    #         flash('Erro: O arquivo está em uso. Feche o arquivo e tente novamente.', 'alert-danger')
+    #         return redirect(url_for('home'))
+    #
+    #     return redirect(url_for('home'))
+    # else:
+    #
+    #     flash('Lote não encontrado.', 'alert-danger')
 
 @app.route('/imprimir_dados/<int:lote_id>', methods=['GET'])
 def imprimir_dados(lote_id):
