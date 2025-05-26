@@ -6,29 +6,7 @@
 
 {%endblock%}
 {%block body%}
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const loteId = urlParams.get('lote_id');
-
-        if (loteId) {
-            const elementoLote = document.getElementById(`lote-${loteId}`);
-            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
-
-            if (elementoLote && tabelaContainer) {
-                // Obter a posição do elemento
-                const rect = elementoLote.getBoundingClientRect();
-                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
-
-                // Rolar para a posição do lote dentro do container
-                tabelaContainer.scrollTo({
-                    top: offset - 100, // Ajusta 100 pixels para cima
-                    behavior: 'smooth' // Rolagem suave
-                });
-            }
-        }
-    });
-</script>
+<!--script-->
 
 
 <div class="container mt-1">
@@ -36,7 +14,7 @@
 
     <form method="POST" action="/">
         {{ form.hidden_tag() }}
-        <!--    3 4 4 2 2    <div>-->
+        <!--        <div>-->
         <div class="row border mt-2 p-1 meupost">
             <div class="col-12 col-sm-3">
                 {{ form.letra.label }}
@@ -165,9 +143,9 @@
                                     {{ lote.status[0:10] }}</button>
                             {%elif lote.status=='Aguardando aprovação'%}
                                 <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                                   class="btn btn-sm btn-outline-warning">{{ lote.status[0:16] }}</a>
+                                   class="btn btn-sm btn btn-warning">{{ lote.status[0:16] }}</a>
                             {%else%}
-                                <button class="btn btn-sm btn-dark w-70">{{ lote.status[0:10]}} </button>
+                                <button class="btn btn-sm btn btn-danger w-70"><del>{{ lote.status[0:10]}}</del> </button>
                             {%endif%}
                         {%else%}
                             {%if lote.status=='Disponivel'%}
@@ -175,7 +153,7 @@
                                class="btn btn-sm btn-outline-success">{{ lote.status[0:10] }}</a>
                             {%else%}
                             <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn-dark">{{ lote.status[0:10] }} <br> vendedor desaprovado</a>
+                               class="btn btn-sm btn btn-danger"> {{ lote.status[0:10] }} <br> <del>vendedor desaprovado</del></a>
                             {%endif%}
                         {%endif%}
                     </td>
@@ -211,4 +189,30 @@
 
 
 </div>
+<script>
+    //INICIO.........ROLAR NO GRID ATÉ O ÙLTIMO LOTE ALTERADO.........
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const loteId = urlParams.get('lote_id');
+
+        if (loteId) {
+            const elementoLote = document.getElementById(`lote-${loteId}`);
+            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
+
+            if (elementoLote && tabelaContainer) {
+                // Obter a posição do elemento
+                const rect = elementoLote.getBoundingClientRect();
+                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
+
+                // Rolar para a posição do lote dentro do container
+                tabelaContainer.scrollTo({
+                    top: offset - 100, // Ajusta 100 pixels para cima
+                    behavior: 'smooth' // Rolagem suave
+                });
+            }
+        }
+    });
+    //FIM.........ROLAR NO GRID ATÉ O ÙLTIMO LOTE ALTERADO.........
+
+</script>
 {%endblock%}
