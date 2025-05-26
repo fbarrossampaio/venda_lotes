@@ -103,7 +103,7 @@
             <tbody>
             {% for lote in lotes %}
 
-            {% if (lote.autor_lote.username != current_user.username
+            {% if (lote.autor_lote.id != current_user.id
                  and current_user.permission_level == 'corretor'
                  and lote.status != 'Disponivel') or (current_user.liberado_por is none) %}
             {%else%}
