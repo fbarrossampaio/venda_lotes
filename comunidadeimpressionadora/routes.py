@@ -187,10 +187,10 @@ def login():
             login_user(usuario, remember=form_login.lembrar_dados.data)
             flash(f'Login ok {form_login.email.data}', 'alert-success')
             par_next = request.args.get('next')
-            if par_next:
-                return redirect(par_next)
-            else:
-                return redirect(url_for('home'))
+            # if par_next:
+            #     return redirect(par_next)
+            # else:
+            return redirect(url_for('home'))
         else:
             if not usuario:
                 flash(f'USUÁRIO INVÁLIDO {form_login.email.data}', 'alert-danger')
