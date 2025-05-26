@@ -337,8 +337,8 @@ class FormFiltroLote(FlaskForm):
 
     # RadioField para seleção da ordem
     ordem = RadioField('Filtro de Lotes:',id='ordem', choices=[
-        ('lote', 'Todos'),
-        ('data_venda', 'Alterados ')
+        ('lote', 'Todos os lotes'),
+        ('data_venda', 'Lotes Alterados em ordem de 1ª inclusão  ')
     ])
     submit = SubmitField('Filtrar')
 
