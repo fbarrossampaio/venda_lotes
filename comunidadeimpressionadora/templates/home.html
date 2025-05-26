@@ -43,13 +43,33 @@
                 {{ form.letra() }}
             </div>
             <div class="col-12 col-sm-4">
-                {{ form.valor_minimo.label }}
-                {{ form.valor_minimo() }}
+                {{ form.valor_maximo.label }}
+                {% if form.valor_minimo.errors %}
+                    {{ form.valor_minimo(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form.valor_minimo.errors %}
+                        {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {{ form.valor_minimo }}
+                {% endif %}
             </div>
+
             <div class="col-12 col-sm-4">
                 {{ form.valor_maximo.label }}
-                {{ form.valor_maximo() }}
+                {% if form.valor_maximo.errors %}
+                    {{ form.valor_maximo(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for erro in form.valor_maximo.errors %}
+                        {{ erro }}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {{ form.valor_maximo }}
+                {% endif %}
             </div>
+
             <div class="col-12 col-sm-6">
                 {{ form.ordem.label }}
                 {{ form.ordem() }}
