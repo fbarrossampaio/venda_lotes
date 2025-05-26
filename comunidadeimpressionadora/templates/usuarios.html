@@ -28,34 +28,6 @@
         </div>
     </form>
 
-
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const usuarioId = urlParams.get('usuario_id');
-
-        if (usuarioId) {
-            const elementoLote = document.getElementById(`usuario-${usuarioId}`);
-            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
-
-            if (elementoLote && tabelaContainer) {
-                // Obter a posição do elemento
-                const rect = elementoLote.getBoundingClientRect();
-                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
-
-                // Rolar para a posição do lote dentro do container
-                tabelaContainer.scrollTo({
-                    top: offset - 100, // Ajusta 100 pixels para cima
-                    behavior: 'smooth' // Rolagem suave
-                });
-            }
-        }
-    });
-</script>
-
-
     <hr>
     <style>
         .tabela-container {
@@ -139,14 +111,15 @@
                     <td style="border-inline: 2px solid black; background-color: blue; color: white; font-size: 22px;">
                     {{usuario.permission_level }} </td>
                 {% elif usuario.permission_level == 'Não informado'%}
-                    <td style="border-inline: 2px solid black; background-color: red; color: white; font-size: 22px;">
+                    <td style="border-inline: 2px solid black; background-color: yellow; color: black; font-size: 22px;">
                     {{usuario.permission_level }}</td>
                 {% elif usuario.permission_level == 'corretor'%}
                     <td style="border-inline: 2px solid black; background-color: green; color: white; font-size: 22px;">
                     {{usuario.permission_level }}</td>
                 {% elif usuario.permission_level == 'Desaprovado'%}
-                    <td style="border-inline: 2px solid black; background-color: black; color: red; font-size: 22px;">
-                    {{usuario.permission_level }}</td>
+                    <td style="border-inline: 2px solid black; background-color: red; color: white; font-size: 22px;">
+                    <del>{{usuario.permission_level }}</del></td>
+
                 {%endif %}
 
 <!--</td>-->
@@ -164,7 +137,8 @@
                 </td>
                 <td>
                   <a href="{{ url_for('desaprovar_usuario', usuario_id=usuario.id) }}"
-                         class="btn btn-sm btn-outline-dark"><small>Desaprovar usuário</small></a>
+                         class="btn btn-sm btn btn-outline-danger"><small>Desaprovar usuário</small></a>
+
                  </td>
                 {%else %}
 
@@ -184,4 +158,27 @@
     </div>
 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const usuarioId = urlParams.get('usuario_id');
+
+        if (usuarioId) {
+            const elementoLote = document.getElementById(`usuario-${usuarioId}`);
+            const tabelaContainer = document.querySelector('.tabela-container'); // Seleciona o container da tabela
+
+            if (elementoLote && tabelaContainer) {
+                // Obter a posição do elemento
+                const rect = elementoLote.getBoundingClientRect();
+                const offset = rect.top + window.scrollY - tabelaContainer.getBoundingClientRect().top; // Offset em relação ao container
+
+                // Rolar para a posição do lote dentro do container
+                tabelaContainer.scrollTo({
+                    top: offset - 100, // Ajusta 100 pixels para cima
+                    behavior: 'smooth' // Rolagem suave
+                });
+            }
+        }
+    });
+</script>
 {%endblock%}
