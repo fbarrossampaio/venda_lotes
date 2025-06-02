@@ -2,47 +2,9 @@
 {% block head %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formulário</title>
-<script>
-
-    function toggleConjugeFields() {
-    const estadoCivil = document.getElementById('regime_casamento').value;
-    const conjugeFields = document.getElementById('conjuge-fields');
-    const cpfFields = document.getElementById('cpf-cnpj-fields');
-    const rgFields = document.getElementById('rg-fields');
-    const emailFields = document.getElementById('email-fields');
-    const celularFields = document.getElementById('celular-fields');
-    const nacionalidade_conjFields = document.getElementById('nacionalidade_conj-fields');
-    const profissao_conjFields = document.getElementById('profissao_conj-fields');
-    const estado_civil_conjFields = document.getElementById('estado_civil_conj-fields');
-
-
-    // Mostra ou esconde os campos com base na seleção
-
-    if (estadoCivil.startsWith('2 ')) {  // Modifiquei para verificar se começa com '2 '
-        conjugeFields.style.display = 'block';
-        cpfFields.style.display = 'block';
-        rgFields.style.display = 'block';
-        emailFields.style.display = 'block';
-        celularFields.style.display = 'block';
-        nacionalidade_conjFields.style.display = 'block';
-        profissao_conjFields.style.display = 'block';
-        estado_civil_conjFields.style.display = 'block';
-    } else {
-        conjugeFields.style.display = 'none';
-        cpfFields.style.display = 'none';
-        rgFields.style.display = 'none';
-        emailFields.style.display = 'none';
-        celularFields.style.display = 'none';
-        nacionalidade_conjFields.style.display = 'none';
-        profissao_conjFields.style.display = 'none';
-        estado_civil_conjFields.style.display = 'none';
-    }
-}
-
-</script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-<script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
 
 <style>
     /* CSS para cabeçalho fixo */
@@ -66,7 +28,9 @@
 {% endblock %}
 
 {% block body %}
+
 <body onload="toggleConjugeFields()">
+
 <div class="container">
     <strong style="color: orange">usuário={{current_user.username}}/ permissão={{current_user.permission_level}}
     </strong>
@@ -81,16 +45,14 @@
                     {%if current_user.permission_level=='supervisor'%}
                         {%if lote.status!='Vendido'%}
                             <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
-                                <button class="btn btn-sm btn-outline-primary w-40">aprovar venda</button>
+                                <button class="btn btn-sm btn btn-success w-40">aprovar venda</button>
                             </a>
                         {%endif%}
                         <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
                             <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
                         </a>
                     {%endif%}
-                    <a href="{{ url_for('cancelar_venda', lote_id=lote.id) }}" onclick="return confirm('Tem certeza que deseja cancelar a venda?');">
-                        <button class="btn btn-sm btn-outline-primary w-40">Cancelar venda</button>
-                    </a>
+
                     <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
                         <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
                     </a>
@@ -113,12 +75,16 @@
                          <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}"
                             onclick="return confirm(
                             'Esta venda já foi APROVADA,Tem certeza que deseja EXTORNAR A APROVAÇÃO permitindo que o vendedor volte a fazer alterações?');">
-                            <button class="btn btn-sm btn-outline-primary w-40">
+                            <button class="btn btn-sm btn-warning w-40">
                                 extornar aprovação da venda</button>
                         </a>
                     {%endif%}
+                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#CancelarVenda">
+                    <button class="btn btn-sm btn btn-danger w-40">Cancelar venda</button>
+                    </a>
                 {%endif%}
-                <button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button>
+<!--                <button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button>-->
+                <a href="#BotaoInclusao"><button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button></a>
             </div>
         </div>
     </div>
@@ -406,10 +372,78 @@
             </fieldset>
             <!--            <div class="row border mt-2 p-1 meupost">-->
 
-            {{ form.botao_submit_venda(class="btn btn-primary") }}
+
+            <div id="BotaoInclusao">  <!-- ID para referência -->
+                {{ form.botao_submit_venda(class="btn btn-primary") }}
+            </div>
 
         </form>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="CancelarVenda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cancelar Venda</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>Você quer mesmo cancelar esta venda???</p>
+          <p>Esta opção é definitiva!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+        <form method="POST" action="{{ url_for('cancelar_venda', lote_id=lote.id)}}">
+             <button type="submit" class="btn btn-danger">Cancelar Venda</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+    function toggleConjugeFields() {
+    const estadoCivil = document.getElementById('regime_casamento').value;
+    const conjugeFields = document.getElementById('conjuge-fields');
+    const cpfFields = document.getElementById('cpf-cnpj-fields');
+    const rgFields = document.getElementById('rg-fields');
+    const emailFields = document.getElementById('email-fields');
+    const celularFields = document.getElementById('celular-fields');
+    const nacionalidade_conjFields = document.getElementById('nacionalidade_conj-fields');
+    const profissao_conjFields = document.getElementById('profissao_conj-fields');
+    const estado_civil_conjFields = document.getElementById('estado_civil_conj-fields');
+
+
+    // Mostra ou esconde os campos com base na seleção
+
+    if (estadoCivil.startsWith('2 ')) {  // Modifiquei para verificar se começa com '2 '
+        conjugeFields.style.display = 'block';
+        cpfFields.style.display = 'block';
+        rgFields.style.display = 'block';
+        emailFields.style.display = 'block';
+        celularFields.style.display = 'block';
+        nacionalidade_conjFields.style.display = 'block';
+        profissao_conjFields.style.display = 'block';
+        estado_civil_conjFields.style.display = 'block';
+    } else {
+        conjugeFields.style.display = 'none';
+        cpfFields.style.display = 'none';
+        rgFields.style.display = 'none';
+        emailFields.style.display = 'none';
+        celularFields.style.display = 'none';
+        nacionalidade_conjFields.style.display = 'none';
+        profissao_conjFields.style.display = 'none';
+        estado_civil_conjFields.style.display = 'none';
+    }
+}
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </body>
 {% endblock %}
