@@ -3,18 +3,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lOTES</title>
 
-
 {%endblock%}
 {%block body%}
-<!--script-->
-
 
 <div class="container mt-1">
     <strong style="color: orange">usuário={{current_user.username}}/ permissão={{current_user.permission_level}} </strong>
 
     <form method="POST" action="/">
         {{ form.hidden_tag() }}
-        <!--        <div>-->
         <div class="row border mt-2 p-1 meupost">
             <div class="col-12 col-sm-3">
                 {{ form.letra.label }}
@@ -68,44 +64,42 @@
     <div class="tabela-container">
         <table class="table table-striped">
             <thead>
-            <tr>
-                {% if current_user.permission_level == 'supervisor' %}
-                    <th>Lote</th>
-                    <th>Ações</th>  <!-- Coluna para ações -->
-                    <th>Área</th>
-                    <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
-                    <th>Entrada</th>
-                    <th>100 X</th>
-                    <th style="border-left: 2px solid black;">12 X</th>
-                    <th>24 X</th>
-                    <th>36 X</th>
-                    <th>48 X</th>
-                    <th>60 X</th>
-                    <th>Vendedor</th>
-                    <th>Ações Superv.</th>
-                {% else %}
-                    <th>Lote</th>
-                    <th>Ações</th>  <!-- Coluna para ações -->
-                    <th>Área</th>
-                    <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
-                    <th>Entrada</th>
-                    <th>100 X</th>
-                    <th style="border-left: 2px solid black;">12 X</th>
-                    <th>24 X</th>
-                    <th>36 X</th>
-                    <th>48 X</th>
-                    <th>60 X</th>
+                <tr>
+                    {% if current_user.permission_level == 'supervisor' %}
+                        <th>Lote</th>
+                        <th>Ações</th>  <!-- Coluna para ações -->
+                        <th>Área</th>
+                        <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
+                        <th>Entrada</th>
+                        <th>100 X</th>
+                        <th style="border-left: 2px solid black;">12 X</th>
+                        <th>24 X</th>
+                        <th>36 X</th>
+                        <th>48 X</th>
+                        <th>60 X</th>
+                        <th>Vendedor</th>
 
-                {% endif %}
-            </tr>
-
+                    {% else %}
+                        <th>Lote</th>
+                        <th>Ações</th>  <!-- Coluna para ações -->
+                        <th>Área</th>
+                        <th style="border-left: 2px solid black;">A vista</th>  <!-- Adiciona a borda à esquerda -->
+                        <th>Entrada</th>
+                        <th>100 X</th>
+                        <th style="border-left: 2px solid black;">12 X</th>
+                        <th>24 X</th>
+                        <th>36 X</th>
+                        <th>48 X</th>
+                        <th>60 X</th>
+                    {% endif %}
+                </tr>
             </thead>
             <tbody>
             {% for lote in lotes %}
 
             {% if (lote.autor_lote.id != current_user.id
-                 and current_user.permission_level == 'corretor'
-                 and lote.status != 'Disponivel') or (current_user.liberado_por is none) %}
+                and current_user.permission_level == 'corretor'
+                and lote.status != 'Disponivel') or (current_user.liberado_por is none) %}
             {%else%}
                 <tr id="lote-{{ lote.id }}"> <!-- Adiciona um ID para cada linha -->
                     {%if lote.id==lote_id_n%}
@@ -117,27 +111,33 @@
                         {%if lote.autor_lote.liberado_por%}
                             {%if lote.status=='Em cadastramento'%}
                                 {%if lote.data_venda%}
-                                <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                                   class="btn btn-sm btn-outline-danger">
-                                    {{ "{} {:,.0f} Dias".format(lote.status[0:10],
-                                    (data_atual - lote.data_venda).days) }} </a>
+                                    <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                                       class="btn btn-sm btn-outline-danger">
+                                       {{ "{} {:,.0f} Dias".format(lote.status[0:10],
+                                       (data_atual - lote.data_venda).days) }} </a>
                                 {%endif%}
                             {%elif lote.status=='Vendido'%}
-                                <button class="btn btn-sm btn-outline-primary w-70">
-                                    {{ lote.status[0:10] }}</button>
+
+
+
+                                <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                                class="btn btn-sm btn-success w-70">{{ lote.status[0:10] }}</a>
                             {%elif lote.status=='Aguardando aprovação'%}
                                 <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                                   class="btn btn-sm btn btn-warning">{{ lote.status[0:16] }}</a>
+                                   class="btn btn-sm btn btn-warning">{{lote.status[0:16]}}</a>
                             {%else%}
-                                <button class="btn btn-sm btn btn-danger w-70"><del>{{ lote.status[0:10]}}</del> </button>
+                                <!-- lote cancelado-->
+                                <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
+                                   class="btn btn-sm btn btn-danger"><del>{{lote.status[0:10]}}</del></a>
                             {%endif%}
                         {%else%}
                             {%if lote.status=='Disponivel'%}
                             <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn-outline-success">{{ lote.status[0:10] }}</a>
+                                class="btn btn-sm btn-primary">{{ lote.status[0:10] }}</a>
                             {%else%}
                             <a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn btn-danger"> {{ lote.status[0:10] }} <br> <del>vendedor desaprovado</del></a>
+                                class="btn btn-sm btn btn-danger"> {{ lote.status[0:10] }} <br>
+                                <del>vendedor desaprovado</del></a>
                             {%endif%}
                         {%endif%}
                     </td>
@@ -152,17 +152,9 @@
                     <td>{{ "{:,.0f}".format(lote.tabela_lote.em_36_pr) }}</td>
                     <td>{{ "{:,.0f}".format(lote.tabela_lote.em_48_pr) }}</td>
                     <td>{{ "{:,.0f}".format(lote.tabela_lote.em_60_pr) }}</td>
-                    <!--                 {%if lote.data_venda%}-->
-                    <!--                 <td>{{(data_atual - lote.data_venda).days}}</td>-->
-                    <!--                {%endif%}-->
-
-                    {%if lote.data_venda and current_user.permission_level=='supervisor'
-                        and not lote.status=='Cancelado'%}
+                    {%if lote.autor_lote.username %}
                         <td>{{lote.autor_lote.username[0:10]}}</td>
-                        <td><a href="{{ url_for('vender_lote', lote_id=lote.id) }}"
-                               class="btn btn-sm btn-outline-success">Ações</a></td>
                     {%endif%}
-
                 </tr>
             {%endif%}
             {% endfor %}
@@ -173,6 +165,9 @@
 
 
 </div>
+
+
+
 <script>
     //INICIO.........ROLAR NO GRID ATÉ O ÙLTIMO LOTE ALTERADO.........
     document.addEventListener("DOMContentLoaded", function() {
