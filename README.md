@@ -26,8 +26,8 @@ Os SUPERVISORES têm todos os poderes dos VENDEDORES e mais. Eles podem:
 
 ### Níveis do status do lote
 - **Disponível**
-- **Em cadastramento** Para fazer a reserva do lote a inclusão do Nome e CPF/CNPJ do comprador são suficientes. Permitindo que o vendedor tenha um tempo para completar o cadastro. 
-- **Aguardando aprovação** Uma vez preenchido o cadastro o vendedor solicita a aprovação da venda. 
+- **Em cadastramento:** Para fazer a reserva do lote a inclusão do Nome e CPF/CNPJ do comprador são suficientes. Permitindo que o vendedor tenha um tempo para completar o cadastro do comprador. 
+- **Aguardando aprovação:** Uma vez preenchido o cadastro o vendedor solicita a aprovação da venda. 
 - **Vendido**
 
 **Nota de Segurança:** As credenciais padrão para usuários de teste são:
