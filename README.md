@@ -42,4 +42,4 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 - **2) Em cadastramento:** Para fazer a reserva do lote, a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes. Permitindo que o VENDEDOR tenha um tempo para completar o cadastro do comprador. 
 - **3) Aguardando aprovação:** Uma vez preenchido o cadastro o VENDEDOR solicita aos SUPERVISORES a aprovação da venda. 
 - **4) Vendido** Finalizando o processo de venda, o SUPERVISOR marca o lote como vendido.
-- **Cancelado** os VENDEDORES podem cancelar a venda até o nivel **3) Aguardando aprovação:**, Já os SUPERVISORES podem cancelar a venda a qualquer momento.
+- **X) Cancelado** os VENDEDORES podem cancelar a venda até o nivel **3) Aguardando aprovação:**, Já os SUPERVISORES podem cancelar a venda a qualquer momento.
