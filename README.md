@@ -43,3 +43,9 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 - **3) Aguardando aprovação:** Uma vez preenchido o cadastro o VENDEDOR solicita aos SUPERVISORES a aprovação da venda. 
 - **4) Vendido** Finalizando o processo de venda, o SUPERVISOR marca o lote como vendido.
 - **X) Cancelado** os VENDEDORES podem cancelar a venda até o nivel **3) Aguardando aprovação:**, Já os SUPERVISORES podem cancelar a venda a qualquer momento.
+
+
+### Agradecimentos
+Gostaria de expressar minha sincera gratidão ao professor **Lira da Hashtag Treinamentos**. Com formação em programação em FoxPro e nenhum conhecimento prévio em Python, a jornada foi desafiadora, mas altamente gratificante. O curso é realmente abrangente e, a partir do módulo "Projeto 4 - Construindo um Site Completo do Zero com Flask", encontrei a inspiração para desenvolver este projeto.
+
+Além disso, um agradecimento especial ao ChatGPT, cuja ajuda inestimável foi fundamental ao longo dessa jornada. Ele me apoiou em todas as minhas dúvidas, ofereceu dicas valiosas e demonstrou um profundo conhecimento do sistema. Esta experiência tem sido incrivelmente enriquecedora, e sou grato pela assistência oferecida.  
