@@ -1,6 +1,7 @@
 # SISTEMA DE VENDA DE LOTES
 
 Este programa foi desenvolvido para otimizar as vendas de terrenos de um **LOTEAMENTO**, visando atender os interesses do **LOTEADOR/INCORPORADOR**.
+Um dos principais desafios na venda de um loteamento é o controle do status de cada lote (se está vendido ou disponível). Isso é importante para evitar o risco de dois corretores venderem o mesmo lote.
 
 ## Cadastro de Imobiliárias
 Permite que **VÁRIAS IMOBILIÁRIAS** se cadastrem e, sob a autorização do **SUPERVISOR** do sistema, façam parte do corpo de vendas desse empreendimento.
