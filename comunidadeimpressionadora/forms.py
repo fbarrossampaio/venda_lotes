@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, length,Vali
 from comunidadeimpressionadora.models import Usuario,Tabelapreco,Lote
 from flask_login import current_user
 import re
-#from comunidadeimpressionadora.routes import usuarios
-################inicio funções cpf
+
+
 def validar_cpf_cnpj(form, field):
     value = field.data
 
@@ -23,6 +23,7 @@ def validar_cpf_cnpj(form, field):
         return True
     else:
         raise ValidationError('Deve ser um CPF ou CNPJ válido.')
+
 
 def validar_cpf(cpf):
     # Adicione aqui a lógica de
@@ -73,6 +74,8 @@ def validar_cpf(cpf):
     if cpf[10:11] != wdac:
         return False
     return True
+
+
 def validar_cnpj(cnpj):
     #cnpj = '48837314000123'
     werro = 'nao'
@@ -132,6 +135,8 @@ def validar_cnpj(cnpj):
         return False
     return True  # Substitua pela lógica real
 ################fim funções cpf
+
+
 class FormCriarConta(FlaskForm):
     username=StringField('Nome',validators=[DataRequired()])
     creci=StringField('Creci')
@@ -144,6 +149,7 @@ class FormCriarConta(FlaskForm):
         usuario=Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError('email já cadastrado use outro email,ou faça login ')
+
 
 class FormAlterarConta(FlaskForm):
     id = HiddenField()  # Campo oculto para armazenar o ID do usuário
@@ -180,36 +186,8 @@ class FormLogin(FlaskForm):
 class FormCnpjNovo(FlaskForm):
     cnpj = StringField('cnpj',validators=[DataRequired()])
     botao_submit_cnpj = SubmitField('criar conta')
-#################### fim retirar criar post/perfil######################
-# class FormEditarPerfil(FlaskForm):
-#     username=StringField('username',validators=[DataRequired()])
-#     email = StringField('email',validators=[DataRequired(),Email()])
-#     foto_perfil=FileField('atualizar foto perfil',validators=[FileAllowed(['jpg','png'])])
-#     curso_exel=BooleanField('curso exel')
-#     curso_vba = BooleanField('curso vba')
-#     curso_powerbi = BooleanField('curso powerbi')
-#     curso_python = BooleanField('curso python')
-#     curso_ppt = BooleanField('curso ppt')
-#     curso_SQL = BooleanField('curso SQL')
-#     permissao=RadioField('Escolha uma opção:', choices=[
-#         ('corretor', 'Corretor'),
-#         ('escritorio', 'Escritório'),
-#         ('supervisor', 'Supervisor')
-#     ])
-#
-#     botao_submit_editarperfil = SubmitField('editar perfil')
-#
-#     def validate_email(self, email):
-#         if current_user.email != email.data:
-#             usuario=Usuario.query.filter_by(email=email.data).first()
-#             if usuario:
-#                 raise ValidationError('email já cadastrado use outro email ')
-#
-# class FormCriarPost(FlaskForm):
-#     titulo=StringField('Titulo do Post',validators=[DataRequired(),Length(2,120)])
-#     corpo=TextAreaField('escreva seu texto',validators=[DataRequired()])
-#     botao_submit= SubmitField('criar post')
-#################### fim retirar criar post/perfil######################
+
+
 ESTADOS_BRASILEIROS = [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
     'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN',
@@ -219,10 +197,9 @@ ESTADOS_BRASILEIROS = [
     'rs', 'ro', 'rr', 'sc', 'sp', 'se', 'to', ''
 ]
 
-class FormVenderLote(FlaskForm):
 
+class FormVenderLote(FlaskForm):
     comprador = StringField('Comprador', id='comprador', validators=[DataRequired()])
-    ####################
     nacionalidade=StringField('Nacionalidade',id='nacionalidade')
     profissao=StringField('Profissão',id='profissao')
     cpf_cnpj = StringField('CPF / CNPJ', id='cpf_cnpj', validators=[DataRequired(), validar_cpf_cnpj])
@@ -247,9 +224,10 @@ class FormVenderLote(FlaskForm):
          ('2 casado(a) comunhão parcial de bens', 'Casado(a) comunhão parcial de bens'),
          ('2 casado(a) comunhão universal de bens', 'Casado(a) comunhão universal de bens'),
          ('2 casado(a) separação total de bens', 'Casado(a) separação total de bens'),
-         ('2 separado(a) em união estável', 'Separado(a) em união estável'),
-         ('2 divorciado(a) em união estável', 'Divorciado(a) em união estável'),
-         ('2 viúvo(a) em união estável', 'Viúvo(a) em união estável')])
+         ('2 solteiro(a) em união estável', 'Solteiro(a) em União estável'),
+         ('2 separado(a) em união estável', 'Separado(a) em União estável'),
+         ('2 divorciado(a) em união estável', 'Divorciado(a) em União estável'),
+         ('2 viúvo(a) em união estável', 'Viúvo(a) em União estável')])
     ######################dados cônjuge
     conjuge = StringField('Cônjuge', id='conjuge')
     #cpf_cnpj_conj = StringField('Cpf Cônjuge', id='cpf_cnpj_conj')
@@ -327,32 +305,15 @@ class FormFiltroLote(FlaskForm):
     #letra = SelectField('Filtrar por Letra:', choices=[(chr(i), chr(i)) for i in range(65, 91)])  # A-Z
     letra = SelectField('Filtrar por Letra:',id='letra', choices=lista)  # A-Z
     #letra= 'combined_select'
-
-    # valor_minimo = DecimalField('Valor Mínimo:', default=0,render_kw={"step": "30000"})
-    # valor_maximo = DecimalField('Valor Máximo:', default=0,render_kw={"step": "30000"})
-    valor_minimo = DecimalField('Valor Mín:',id='valor_minimo', default=0)
-    #,validators=[DataRequired(), NumberRange(min=0)])
-    valor_maximo = DecimalField('Valor Máx:',id='valor_maximo', default=0)
-    #,validators=[DataRequired(), NumberRange(min=0)])
-
+    valor_minimo = DecimalField('Valor Mín:',id='valor_minimo', default=0) #,validators=[DataRequired(), NumberRange(min=0)])
+    valor_maximo = DecimalField('Valor Máx:',id='valor_maximo', default=0) #,validators=[DataRequired(), NumberRange(min=0)])
     # RadioField para seleção da ordem
     ordem = RadioField('Filtro de Lotes:',id='ordem', choices=[
-        ('lote', 'Todos os lotes'),
-        ('data_venda', 'Lotes Alterados em ordem de 1ª inclusão  ')
+        ('lote', 'Todos os Lotes'),
+        ('data_venda', 'Lotes Alterados em ordem de 1ª inclusão ')
     ])
     submit = SubmitField('Filtrar')
-
 class FormFiltroUsuario(FlaskForm):
     filtro_nome_usuario = StringField(id='filtro_nome_usuario')
 
     botao_submit = SubmitField('Filtrar')
-
-    # RadioField para seleção da ordem
-    # radio_tipo_usuario = RadioField('Filtro:',id='radio_tipo_usuario', choices=[
-    #     ('todos', 'Todos'),
-    #     ('nao_informado', 'Não informado '),
-    #     ('corretor', 'Corretor '),
-    #     ('supervisor', 'supervisor '),
-    #     ('Desaprovado', 'Desaprovado ')
-    #
-    # ])
