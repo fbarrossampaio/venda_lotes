@@ -55,6 +55,6 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 
 
 ### Agradecimentos
-Gostaria de expressar minha sincera gratidão ao professor **Lira, da Hashtag Treinamentos**. Com uma sólida formação em programação em FoxPro e nenhum conhecimento prévio em Python, a jornada foi desafiadora, mas altamente gratificante. O curso é realmente abrangente e, a partir do módulo "Projeto 4 - Construindo um Site Completo do Zero com Flask", encontrei a inspiração para desenvolver este projeto.
+Gostaria de expressar minha sincera gratidão ao professor **Lira, da Hashtag Treinamentos**. Com formação em programação em FoxPro e nenhum conhecimento prévio em Python, a jornada foi desafiadora, mas altamente gratificante. O curso é realmente abrangente e muito bem apresentado e, a partir do módulo "Projeto 4 - Construindo um Site Completo do Zero com Flask", encontrei a inspiração para desenvolver este projeto.
 
 Além disso, um agradecimento especial ao ChatGPT, cuja ajuda inestimável foi fundamental ao longo dessa jornada. Ele me apoiou em todas as minhas dúvidas, ofereceu dicas valiosas e demonstrou um profundo conhecimento do sistema. Esta experiência tem sido incrivelmente enriquecedora, e sou grato pela assistência oferecida.  
