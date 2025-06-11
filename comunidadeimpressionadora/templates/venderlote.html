@@ -41,50 +41,57 @@
         </div>
         <div class="row">
             <div class="col col-12">
-                {%if lote.status!='Disponivel'%}
-                    {%if current_user.permission_level=='supervisor'%}
-                        {%if lote.status!='Vendido'%}
-                            <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
-                                <button class="btn btn-sm btn btn-success w-40">aprovar venda</button>
+                {%if lote.status!='Cancelado'%}
+                    {%if lote.status!='Disponivel'%}
+                        {%if current_user.permission_level=='supervisor'%}
+                            {%if lote.status!='Vendido'%}
+                                <a href="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
+                                    <button class="btn btn-sm btn btn-success w-40">aprovar venda</button>
+                                </a>
+                            {%endif%}
+                            <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
+                                <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
                             </a>
                         {%endif%}
-                        <a href="{{ url_for('exportar_lote_para_txt', lote_id=lote.id) }}">
-                            <button class="btn btn-sm btn-outline-primary w-40">exportar txt</button>
-                        </a>
-                    {%endif%}
 
-                    <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
-                        <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
-                    </a>
-                    <a href="{{ url_for('imprimir_dados_lgpd', lote_id=lote.id) }}">
-                        <button class="btn btn-sm btn-outline-primary w-40">imprimir lgpd</button>
-                    </a>
-                    {%if lote.status!='Vendido'%}
-                        {%if lote.status!='Aguardando aprovação' and current_user.permission_level=='corretor'%}
-                            <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
-                                <button class="btn btn-sm btn-outline-primary w-40">
+                        <a href="{{ url_for('imprimir_dados', lote_id=lote.id) }}">
+                            <button class="btn btn-sm btn-outline-primary w-40">imprimir proposta</button>
+                        </a>
+                        <a href="{{ url_for('imprimir_dados_lgpd', lote_id=lote.id) }}">
+                            <button class="btn btn-sm btn-outline-primary w-40">imprimir lgpd</button>
+                        </a>
+                        {%if lote.status!='Vendido'%}
+                            {% if (lote.status != 'Aguardando aprovação') and
+                                (current_user.permission_level == 'corretor') %}
+                                <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
+                                    <button class="btn btn-sm btn-warning w-40">
                                     solicitar aprovação da venda</button>
-                            </a>
-                        {%elif current_user.permission_level=='corretor'%}
-                             <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
-                                <button class="btn btn-sm btn-outline-primary w-40">
+                                </a>
+                            {%elif current_user.permission_level=='corretor'%}
+                                <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}">
+                                    <button class="btn btn-sm btn-outline-danger w-40">
                                     Extorno da solicitação de aprovação </button>
+                                </a>
+                            {%endif%}
+                        {%elif current_user.permission_level=='supervisor'%}
+                            <a href="#" class="text-danger" data-bs-toggle="modal"
+                               data-bs-target="#ExtornarStatusVendido">
+                            <button class="btn btn-sm btn-warning w-40">
+                                extornar status VENDIDO</button>
                             </a>
                         {%endif%}
-                    {%elif current_user.permission_level=='supervisor'%}
-                         <a href="{{ url_for('solicitar_aprovacao', lote_id=lote.id) }}"
-                            onclick="return confirm(
-                            'Esta venda já foi APROVADA,Tem certeza que deseja EXTORNAR A APROVAÇÃO permitindo que o vendedor volte a fazer alterações?');">
-                            <button class="btn btn-sm btn-warning w-40">
-                                extornar aprovação da venda</button>
-                        </a>
+                        {% if lote.status=='Vendido' and current_user.permission_level=='corretor' %}
+                        {%else%}
+                            <a href="#" class="text-danger" data-bs-toggle="modal"
+                               data-bs-target="#CancelarVenda">
+                            <button class="btn btn-sm btn btn-danger w-40">
+                                Cancelar venda</button>
+                            </a>
+                        {%endif%}
                     {%endif%}
-                    <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#CancelarVenda">
-                    <button class="btn btn-sm btn btn-danger w-40">Cancelar venda</button>
-                    </a>
+                    <a href="#BotaoInclusao"><button class="btn btn-sm btn-dark w-70">
+                        Botão para INCLUSÂO no final da página</button></a>
                 {%endif%}
-<!--                <button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button>-->
-                <a href="#BotaoInclusao"><button class="btn btn-sm btn-dark w-70">Botão para INCLUSÂO no final da página</button></a>
             </div>
         </div>
     </div>
@@ -304,7 +311,8 @@
                             </div>
                             {% else %}
 
-                                <input id="cpf_cnpj_conj" name="cpf_cnpj_conj" type="text" class="form-control"
+                                <input id="cpf_cnpj_conj" name="cpf_cnpj_conj"
+                                       type="text" class="form-control"
                                        value="{{ form.cpf_cnpj_conj.data }}"/>
                             {% endif %}
                             </div>
@@ -374,11 +382,46 @@
 
 
             <div id="BotaoInclusao">  <!-- ID para referência -->
-                {{ form.botao_submit_venda(class="btn btn-primary") }}
+
+                {{ form.botao_submit_venda(class="btn btn-primary", disabled=(lote.status in ['Cancelado', 'Vendido'])) }}
+                {% if lote.status=='Cancelado' %}
+                    <strong>lote CANCELADO não pode ser alterado</strong>
+                {% endif%}
+                {% if lote.status=='Vendido' %}
+                    {% if current_user.permission_level=='supervisor' %}
+                         <strong >lote vendido para fazer alterações clique em
+                             (extornar status VENDIDO) acima</strong>
+                    {% else%}
+                         <strong >lote vendido para fazer alterações solicite a um SUPERVISOR
+                          para (extornar status VENDIDO)</strong>
+                    {% endif%}
+                {% endif%}
             </div>
 
         </form>
     </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="ExtornarStatusVendido" tabindex="-1"
+     aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel2">Extornar Status Vendido</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>Esta venda já foi APROVADA,Tem certeza que deseja EXTORNAR A APROVAÇÃO  <br>
+          permitindo que o vendedor volte a fazer alterações? </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
+        <form method="POST" action="{{ url_for('aprovar_venda', lote_id=lote.id) }}">
+             <button type="submit" class="btn btn-warning">Extornar Vendido</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="CancelarVenda" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -389,8 +432,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <p>Você quer mesmo cancelar esta venda???</p>
-          <p>Esta opção é definitiva!</p>
+          <p>Você quer mesmo cancelar esta venda???<br>
+          Esta opção é definitiva!</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
@@ -404,7 +447,6 @@
 
 
 <script>
-
     function toggleConjugeFields() {
     const estadoCivil = document.getElementById('regime_casamento').value;
     const conjugeFields = document.getElementById('conjuge-fields');
