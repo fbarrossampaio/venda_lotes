@@ -24,12 +24,6 @@ Os SUPERVISORES têm todos os poderes dos VENDEDORES e mais. Eles podem:
 - Classificar um usuário como SUPERVISOR e alterar cadastros de usuários (com cautela).
 - Aprovar e desaprovar vendas, assegurando que todas as informações estão corretas.
 
-### Níveis do status do lote
-- **Disponível**
-- **Em cadastramento:** Para fazer a reserva do lote a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes. Permitindo que o vendedor tenha um tempo para completar o cadastro do comprador. 
-- **Aguardando aprovação:** Uma vez preenchido o cadastro o vendedor solicita a aprovação da venda. 
-- **Vendido**
-
 **Nota de Segurança:** As credenciais padrão para usuários de teste são:
 - **Supervisor**: `supervisor@gmail.com`, Senha: `123123`
 - **Vendedor**: `corretor@gmail.com`, Senha: `123123`
@@ -41,9 +35,10 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 - Flask-Login
 - Outros conforme listados em `requirements.txt`
 
-## Instalação
-Instruções sobre como instalar e rodar a aplicação localmente.
-
 ## Uso
-Instruções básicas sobre como utilizar o sistema, incluindo comandos específicos e interações.
 
+## Níveis do status do lote
+- **Disponível**
+- **Em cadastramento:** Para fazer a reserva do lote a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes. Permitindo que o vendedor tenha um tempo para completar o cadastro do comprador. 
+- **Aguardando aprovação:** Uma vez preenchido o cadastro o vendedor solicita a aprovação da venda. 
+- **Vendido**
