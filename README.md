@@ -15,8 +15,6 @@ Os usuários são divididos em dois grupos:
 ### VENDEDORES
 Os VENDEDORES devem fazer o pré-cadastro na área de login e aguardar sua liberação feita pelos SUPERVISORES para então começar as vendas. Após a liberação, poderão ver os lotes disponíveis para venda, os lotes que venderam e alterar o seu próprio perfil.
 
-Ao reservar um lote, o VENDEDOR informa o comprador (com nome e CPF/CNPJ) e um marcador indica o tempo (dias) que aquele lote foi reservado, facilitando o controle pelos SUPERVISORES.
-
 ### SUPERVISORES
 Os SUPERVISORES têm todos os poderes dos VENDEDORES e mais. Eles podem:
 - Visualizar todos os lotes disponíveis, em cadastramento, vendidos e cancelados.
@@ -44,7 +42,8 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 
 2. **Em Cadastramento**
    - Para fazer a reserva do lote, a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes, permitindo que o VENDEDOR tenha um tempo para completar o cadastro do comprador.
-
+   - Ao reservar um lote, um marcador indica o tempo (dias) que aquele lote foi reservado, facilitando o controle pelos SUPERVISORES.
+   
 3. **Aguardando Aprovação**
    - Uma vez preenchido o cadastro, o VENDEDOR solicita aos SUPERVISORES a aprovação da venda.
 
