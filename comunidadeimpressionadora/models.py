@@ -1,6 +1,5 @@
 from sqlalchemy import Integer,Boolean
 from sqlalchemy.orm import backref
-
 from comunidadeimpressionadora import database,login_manager
 from datetime import datetime
 from flask_login import UserMixin
@@ -30,7 +29,8 @@ class Usuario(database.Model, UserMixin):
     def contar_posts(self):
         return len(self.posts)
 
-# as funcionalidades do post estão desativadas, mas preservei essa tabela para uso futuro
+
+# as funcionalidades do post estão desativadas, mas preservei essa tabela para eventual uso futuro
 class Post(database.Model):
     id=database.Column(database.Integer,primary_key=True)
     titulo=database.Column(database.String, nullable=False)
@@ -78,9 +78,6 @@ class Lote(database.Model):
     id_tabela = database.Column(database.Integer, database.ForeignKey('tabelapreco.id'), nullable=True)
 
 
-
-# data_criacao=database.Column(database.DateTime, nullable=False, default=utcnow)
-
 class Tabelapreco(database.Model):
     id=database.Column(database.Integer,primary_key=True)
     nome=database.Column(database.String)
@@ -94,5 +91,3 @@ class Tabelapreco(database.Model):
     em_100_pr=database.Column(database.Float)
     em_120_pr=database.Column(database.Float)
     lotes=database.relationship('Lote',backref='tabela_lote',lazy=True)
-
-
