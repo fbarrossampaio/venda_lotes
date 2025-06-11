@@ -37,15 +37,25 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 
 ## Uso
 
-### Níveis do status do lote
-- **1) Disponível**
-- **2) Em cadastramento:** Para fazer a reserva do lote, a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes. Permitindo que o VENDEDOR tenha um tempo para completar o cadastro do comprador. 
-- **3) Aguardando aprovação:** Uma vez preenchido o cadastro o VENDEDOR solicita aos SUPERVISORES a aprovação da venda. 
-- **4) Vendido** Finalizando o processo de venda, o SUPERVISOR marca o lote como vendido.
-- **X) Cancelado** os VENDEDORES podem cancelar a venda até o nivel **3) Aguardando aprovação:**, Já os SUPERVISORES podem cancelar a venda a qualquer momento.
+### Níveis do Status do Lote
+
+1. **Disponível**
+   - O lote está disponível para venda.
+
+2. **Em Cadastramento**
+   - Para fazer a reserva do lote, a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes, permitindo que o VENDEDOR tenha um tempo para completar o cadastro do comprador.
+
+3. **Aguardando Aprovação**
+   - Uma vez preenchido o cadastro, o VENDEDOR solicita aos SUPERVISORES a aprovação da venda.
+
+4. **Vendido**
+   - O processo de venda finaliza, e o SUPERVISOR marca o lote como vendido.
+
+5. **Cancelado**
+   - Os VENDEDORES podem cancelar a venda até o nível **Aguardando Aprovação**. Já os SUPERVISORES podem cancelar a venda a qualquer momento.
 
 
 ### Agradecimentos
-Gostaria de expressar minha sincera gratidão ao professor **Lira da Hashtag Treinamentos**. Com formação em programação em FoxPro e nenhum conhecimento prévio em Python, a jornada foi desafiadora, mas altamente gratificante. O curso é realmente abrangente e, a partir do módulo "Projeto 4 - Construindo um Site Completo do Zero com Flask", encontrei a inspiração para desenvolver este projeto.
+Gostaria de expressar minha sincera gratidão ao professor **Lira, da Hashtag Treinamentos**. Com uma sólida formação em programação em FoxPro e nenhum conhecimento prévio em Python, a jornada foi desafiadora, mas altamente gratificante. O curso é realmente abrangente e, a partir do módulo "Projeto 4 - Construindo um Site Completo do Zero com Flask", encontrei a inspiração para desenvolver este projeto.
 
 Além disso, um agradecimento especial ao ChatGPT, cuja ajuda inestimável foi fundamental ao longo dessa jornada. Ele me apoiou em todas as minhas dúvidas, ofereceu dicas valiosas e demonstrou um profundo conhecimento do sistema. Esta experiência tem sido incrivelmente enriquecedora, e sou grato pela assistência oferecida.  
