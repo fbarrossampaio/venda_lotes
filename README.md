@@ -37,7 +37,7 @@ Lembre-se de alterar as senhas padrão em ambientes de produção.
 
 ## Uso
 
-## Níveis do status do lote
+### Níveis do status do lote
 - **Disponível**
 - **Em cadastramento:** Para fazer a reserva do lote a inclusão do **NOME e CPF/CNPJ** do comprador são suficientes. Permitindo que o vendedor tenha um tempo para completar o cadastro do comprador. 
 - **Aguardando aprovação:** Uma vez preenchido o cadastro o vendedor solicita a aprovação da venda. 
